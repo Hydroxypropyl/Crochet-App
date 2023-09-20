@@ -1,0 +1,32 @@
+# Competitors
+=================
+
+1) YouTube : many tutorials for basic and more complex stitches. 
+
+=================
+
+2) CrochetStitchApp : presents 3 categories : stitches, borders and collars. 43 stitches, 3 borders, 1 collar. 
+
++ : has nice pictures of the stitches, all taken is same configuration so creates nice harmony. All instructions include a diagram and the multiple of stitches needed. Instructions are in clear, not using abbreviations.
+
+- : stitches aren't named (only Stitch 2 for example). Does not specify the type of terms used (US or OK). Not polished, some functionalities don't work (like the Settings button).
+
+=================
+
+3) Crochet row counter & patterns : has a counter system (main counter and infinite number of secondary counters), where you can also time yourself. Pdfs can be added to the app and shown below the counter to follow both instructions and count. Projects can be marked as finished.
+
++ : you can put in a lot of crochet related info in a "Tools" section: the hooks you have, the yarns, your needles, create a shopping list, convert units (metrics to US). There is also an abbreviation guide, in UK, US, RU, DE. All stitches have a link to a youtube video from the app's channel, showing how to do it. The schematic representation is also added (with a 3D model available which I'm not sure of the point). Explanations are given on how to do the stitch and it also gives a short description of what the stitch is used for. Counters and timers are linked to projects (so when the person reopens a pdf, it starts back where the user had left it).
+Has 15 built-in patterns, which are specifically designed for the app so the row tracking, layout of instructions and counters are very nicely laid out. 
+
+- : you must pay (7 day free trial). All the listing of hooks and yarn and stuff seems to be informative, you cannot link them to a project. No secondary counter can be added when instructions are open. Buttons to increase the counter are a bit small in my opinion.
+
+=================
+
+4) Compte Rang : can create patterns.
+
++ : dark mode. Can import patterns from ravelry.
+
+- : pattern creation is quite complex with a lot of successive menus. Modal dialogs' text content isn't clear (just the name of the object that triggered the dialog). Way too many nested menus, some layouts overlap. Overall the app feels very overwhelming. There are adds. There is a sample converter (put in dimensions of sample from pattern, our sample, and converts). But it's actually not clear what is being converted and what information we should put in.
+
+=================
+
