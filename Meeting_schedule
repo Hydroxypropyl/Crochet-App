@@ -13,3 +13,7 @@ The point is to create some sort of crochet Swiss knife that has handy functiona
 We do not want to create a place where people can share tutorials, because that already exists and the app would lose its core functionality.
 - basic idea of the dynamic functionality and preliminary technologies selected : React, Deno or Node for the technologies, dynamic functionality mainly in the counter and creation of projects linked to counters.
 - project plan draft (project structure, tasks divided among group members, time to be used, preliminary schedule) : 
+
+#September, 21st 2023 : 11:00 - 12:00
+
+TBD : counters being named "Main counter" and then letting the possibility to the user to create as many counters as they want and also name them
