@@ -11,5 +11,5 @@
 They can also use a stitch/row counter that can be associated to a project, like that the user can reload a previous counter when they start working on a specific project.
 The point is to create some sort of crochet Swiss knife that has handy functionalities all in one. It's not very dynamic in the sense that the user can only create counters, not stitches nor tutorials.
 We do not want to create a place where people can share tutorials, because that already exists and the app would lose its core functionality.
-- basic idea of the dynamic functionality and preliminary technologies selected : 
+- basic idea of the dynamic functionality and preliminary technologies selected : React, Deno or Node for the technologies, dynamic functionality mainly in the counter and creation of projects linked to counters.
 - project plan draft (project structure, tasks divided among group members, time to be used, preliminary schedule) : 
