@@ -7,3 +7,14 @@
 - Do we need to keep track of the working hours and do we have to include it to the report?
 
 =============== Meeting notes ============
+
+- we'll see if our project fits to the requirements of this course
+- final product is compared to the design document
+- prioritize core functions, should also remain intact
+- we can use figma to demo the project
+- design gala focuses mostly on the idea of a software
+- allocate tasks (write down responsibilities), lot of changes awaits
+- depends on the team, whether we want to use unknown technologies, only one component of the project -> task allocation
+- key/main focus is on development of the service, actual coding is only a part of this
+- mobile app is not okay, must be web-based -> web service which has prettier mobile UI than desktop UI
+- security only a consideration (hash passwords, secure text fields...), basic web service security
