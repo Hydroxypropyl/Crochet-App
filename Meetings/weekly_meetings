@@ -17,3 +17,34 @@ We do not want to create a place where people can share tutorials, because that 
 #September, 21st 2023 : 11:00 - 12:00
 
 TBD : counters being named "Main counter" and then letting the possibility to the user to create as many counters as they want and also name them
+
+# September, 28th 2023 : 11:00 - 12:00
+Discussed the last details of the design document. The parts had been previously split between all the members. 
+
+Discussed the importance of each feature to separate them into each successive increments. 
+
+- The most important features are the row/stitch counter and the stitch database. Since they are independent they can be worked on simultanously.
+
+First increment : deadline 15th October
+- learn basics of React
+- initialize the front and back end and determine the structure of the database. Design the architecture so as to allow a clear/dark mode switching.
+Goal : have a skeleton of the app with a functioning menu.
+
+Second increment : deadline 1st November
+Goal 1: the user must be able to create a main counter and many secondary counters, and increase/decrease them.
+Goal 2 : the user must be able to see the stitch glossary.
+
+Third increment : deadline 17th November
+Goal 1 : user can log in/log out.
+Goal 2 : user can mark favorites, create projects and load them.
+Goal 3 : user can search through the database.
+
+Fourth increment : deadline 24th November
+Goal : polishing the front page. Add the abbreviation guide.
+Goal 2 : implement user preferences : language.
+
+Testing and debug in all the increments.
+
+Assignements for next week : Henna on the database, create the bottom menu bar. Mickael & Manon learn basics of React. Manon on backend and Mickael on frontend.
+
+
