@@ -54,3 +54,18 @@ For the moment the client has the possibility to create stitches, it's a debug a
 
 Still focus on the mobile version because that's what we announced. But it's React so the web version can be relatively easily created.
 
+For the presentation, present the figma as a safe option. If we're advanced enough, show the code.
+
+For the database, only create a few entries, shouldn't focus too much on adding a lot of content for the time being.
+Henna is taking care of updating React to version 18.
+
+For the presentation : present home page + login, stitch glossary & favorites, then projects & counters
+- Mickael : home page + login
+- Manon : stitch glossary & favorites
+- Henna : projects & counters
+
+
+
+
+
+
