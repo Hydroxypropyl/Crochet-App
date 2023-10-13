@@ -47,4 +47,25 @@ Testing and debug in all the increments.
 
 Assignements for next week : Henna on the database, create the bottom menu bar. Mickael & Manon learn basics of React. Manon on backend and Mickael on frontend.
 
+# October, 12th : 11:00-12:00 : Share progress
+Created a basic React service with the menu bar. For the moment, issues with connecting the MongoDB database that is in a docker container, but since we'll be using one online in the long run, it should be okay.
+Structure : container for the server, one for the client and one for the database.
+For the moment the client has the possibility to create stitches, it's a debug and test feature. The URL must be hardcoded to have access to the page.
+
+Still focus on the mobile version because that's what we announced. But it's React so the web version can be relatively easily created.
+
+For the presentation, present the figma as a safe option. If we're advanced enough, show the code.
+
+For the database, only create a few entries, shouldn't focus too much on adding a lot of content for the time being.
+Henna is taking care of updating React to version 18.
+
+For the presentation : present home page + login, stitch glossary & favorites, then projects & counters
+- Mickael : home page + login
+- Manon : stitch glossary & favorites
+- Henna : projects & counters
+
+
+
+
+
 
