@@ -1,30 +1,37 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import { useState } from 'react';
 
-import Logo from './Logo'
-import Links from './Links'
+import { styled } from '@mui/material/styles';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import HomeIcon from '@mui/icons-material/Home';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ListIcon from '@mui/icons-material/List';
+import Paper from '@mui/material/Paper';
+import TimerIcon from '@mui/icons-material/Timer';
+import { Link } from 'react-router-dom';
 
-const Container = styled.div.attrs({
-    className: 'container',
-})``
+const NavBar = () => {
+    const [value, setValue] = useState('recents');
 
-const Nav = styled.nav.attrs({
-    className: 'navbar navbar-expand-lg navbar-dark bg-dark',
-})`
-    margin-bottom: 20 px;
-`
+    const StyledNav = styled(BottomNavigation)(() => ({
+        backgroundColor: '#D5E1FF',
+      }));
 
-class NavBar extends Component {
-    render() {
-        return (
-            <Container>
-                <Nav>
-                    <Logo />
-                    <Links />
-                </Nav>
-            </Container>
-        )
-    }
+  return (
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <StyledNav
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        >
+          <BottomNavigationAction label="Home" to="/" component={Link} icon={<HomeIcon />} />
+          <BottomNavigationAction label="Stitches" to="/stitches" component={Link} icon={<ListIcon />} />
+          <BottomNavigationAction label="Favorites" to="/favorites" component={Link} icon={<FavoriteIcon />} />
+          <BottomNavigationAction label="Counters" to="/counters" component={Link} icon={<TimerIcon />} />
+        </StyledNav>
+    </Paper>
+  )
 }
 
 export default NavBar
