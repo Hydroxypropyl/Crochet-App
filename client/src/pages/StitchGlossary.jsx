@@ -8,10 +8,8 @@ import StitchItem from '../components/StitchItem';
 
 const StitchGlossary = () => {
     const [stitches, setStitches] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true);
         api.getAllStitches().then(res => {
           if (res.success) {
             console.log(res.data);
@@ -19,7 +17,6 @@ const StitchGlossary = () => {
           } else {
             window.alert(`Unable to fetch stiches`);
           }
-          setIsLoading(false);
         })
     }, [])
 
@@ -35,9 +32,9 @@ const StitchGlossary = () => {
     console.log('TCL: StitchesList -> render -> stitches', stitches)
 
     return (
-        <div class={styles.glossary_container}>
+        <div className={styles.glossary_container}>
           {stitches.map((row) => (
-            <StitchItem name={row.name} image={row.image}></StitchItem>
+            <StitchItem key={row.id} name={row.name} image={row.image}></StitchItem>
 
           ))}
         </div>

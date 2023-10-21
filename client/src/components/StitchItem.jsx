@@ -9,12 +9,12 @@ class StitchItem extends Component {
 
     render() {
         return (
-            <div class={styles.stitch_container}>
-                <div class={styles.stitch_image}>
+            <div className={styles.stitch_container}>
+                <div className={styles.stitch_image}>
                     <img src={this.props.image} alt="" />
-                    <span class={styles.stitch_name}>{this.props.name}</span>
+                    <span className={styles.stitch_name}>{this.props.name}</span>
                 </div>
-                <button class={styles.favorite_button} onClick={this.toggleFavorite}>FAV</button>
+                <button className={styles.favorite_button} onClick={this.toggleFavorite}>FAV</button>
             </div>
         )
     }

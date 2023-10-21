@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Counters, Favorites, Home, StitchGlossary, StitchInsert, StitchUpdate } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
