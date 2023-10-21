@@ -14,22 +14,27 @@ const StitchGlossary = () => {
     const [stitches, setStitches] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    /*useEffect(() => {
+    useEffect(() => {
         setIsLoading(true);
-        api.getAllStitches().then(initialStitches => {
-            setStitches(initialStitches);
-            isLoading(false);
+        api.getAllStitches().then(res => {
+          if (res.success) {
+            console.log(res.data);
+            setStitches(res.data);
+          } else {
+            window.alert(`Unable to fetch stiches`);
+          }
+          setIsLoading(false);
         })
-    }, [])*/
+    }, [])
 
-    const addStitch = async () => {
+    /*const addStitch = async () => {
         const payload = { name: "Stitch_test", difficulty: "4", image: "my_image"}
 
         await api.insertStitch(payload).then(res => {
             window.alert(`Stitch inserted successfully`);
             window.location.reload();
         })
-    }
+    }*/
 
     console.log('TCL: StitchesList -> render -> stitches', stitches)
 

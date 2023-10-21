@@ -1,4 +1,5 @@
 const Stitch = require('../models/stitch-model')
+const DEBUG = true;
 
 //Create a stitch using the body content of the request
 createStitch = (req, res) => {
@@ -92,6 +93,10 @@ deleteStitch = async (req, res) => {
 
 //Retrieve a specific stitch according to his id
 getStitchById = async (req, res) => {
+    if (DEBUG) {
+        return res.status(200).json({ success: true, data: {name: "test", difficulty: "4", image: "myImage"} });
+    }
+
     await Stitch.findOne({ _id: req.params.id }, (err, stitch) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -108,6 +113,23 @@ getStitchById = async (req, res) => {
 
 //Retrieve all the stitches in the database
 getStitches = async (req, res) => {
+    if (DEBUG) {
+        const stitch1 = new Stitch({
+            name: 'Stitch 1',
+            difficulty: 3,
+            image: 'stitch1.jpg',
+            id: '15458412485'
+        });
+        const stitch2 = new Stitch({
+            name: 'Stitch 2',
+            difficulty: 2,
+            image: 'stitch2.jpg',
+            id: '54446194341'
+        });
+        const stitches = [stitch1, stitch2];
+        return res.status(200).json({ success: true, data: stitches});
+    }
+
     await Stitch.find({}, (err, stitches) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
