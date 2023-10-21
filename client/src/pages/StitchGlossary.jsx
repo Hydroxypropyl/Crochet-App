@@ -20,15 +20,6 @@ const StitchGlossary = () => {
         })
     }, [])
 
-    /*const addStitch = async () => {
-        const payload = { name: "Stitch_test", difficulty: "4", image: "my_image"}
-
-        await api.insertStitch(payload).then(res => {
-            window.alert(`Stitch inserted successfully`);
-            window.location.reload();
-        })
-    }*/
-
     console.log('TCL: StitchesList -> render -> stitches', stitches)
 
     return (
