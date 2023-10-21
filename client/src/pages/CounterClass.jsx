@@ -1,4 +1,5 @@
 import React, { useState, Component } from 'react';
+import styles from './css/counters.module.css';
 
 class CounterClass extends Component {
   constructor(props) {
@@ -23,15 +24,15 @@ class CounterClass extends Component {
 
   render() {
     return(
-      <div class="Counter">
-      <div class="CounterName">
-      {this.state.name} Counter
-      </div>
-      <div class="CounterBar" style={{display:'inline'}}>
-        <button onClick={this.decrease}>-</button>
-        <p>{this.state.counter}</p>
-        <button onClick={this.increase}>+</button>
-      </div>
+      <div className="counter" >
+        <p className={styles.counterName}>
+        {this.state.name} Counter
+        </p>
+        <div className={styles.counterBar}>
+          <button onClick={this.decrease} className={styles.counterButton}>-</button>
+          <p>{this.state.counter}</p>
+          <button onClick={this.increase} className={styles.counterButton}>+</button>
+        </div>
       </div>
     )
       
