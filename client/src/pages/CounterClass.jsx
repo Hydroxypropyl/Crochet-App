@@ -24,14 +24,14 @@ class CounterClass extends Component {
 
   render() {
     return(
-      <div className="counter" >
+      <div className={styles.counter}>
         <p className={styles.counterName}>
-        {this.state.name} Counter
+        {this.state.name}
         </p>
         <div className={styles.counterBar}>
-          <button onClick={this.decrease} className={styles.counterButton}>-</button>
+          <button onClick={this.decrease} className={styles.minusButton}>–</button>
           <p>{this.state.counter}</p>
-          <button onClick={this.increase} className={styles.counterButton}>+</button>
+          <button onClick={this.increase} className={styles.plusButton}>+</button>
         </div>
       </div>
     )
