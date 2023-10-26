@@ -1,7 +1,7 @@
 const Stitch = require('../models/stitch-model')
 const DEBUG = true; //Set to false when you want to retrieve stitches from database not mock data
 
-//Create a stitch using the body content of the request
+/*//Create a stitch using the body content of the request
 createStitch = (req, res) => {
     const body = req.body
 
@@ -89,7 +89,7 @@ deleteStitch = async (req, res) => {
 
         return res.status(200).json({ success: true, data: stitch })
     }).catch(err => console.log(err))
-}
+}*/
 
 //Retrieve a specific stitch according to his id
 getStitchById = async (req, res) => {
@@ -117,13 +117,13 @@ getStitches = async (req, res) => {
         const stitch1 = new Stitch({
             name: 'Stitch 1',
             difficulty: 3,
-            image: 'stitch1.jpg',
+            image: 'mockup.jpg',
             id: '15458412485'
         });
         const stitch2 = new Stitch({
             name: 'Stitch 2',
             difficulty: 2,
-            image: 'stitch2.jpg',
+            image: 'mockup.jpg',
             id: '54446194341'
         });
         const stitches = [stitch1, stitch2];
@@ -144,9 +144,6 @@ getStitches = async (req, res) => {
 }
 
 module.exports = {
-    createStitch,
-    updateStitch,
-    deleteStitch,
     getStitchById,
     getStitches,
 }

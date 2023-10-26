@@ -1,22 +1,24 @@
 .stitch_container {
-    height: 10rem;
+    height: 12rem;
     display: flex;
     flex-wrap: wrap;
-    margin: 5px;
+    margin: 5rem;
   }
   
   .stitch_image {
     display: flex;
     flex-direction: column;
     background-color: purple;
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
     padding: 2rem;
+    border-radius: 3rem;
   }
   
   .favorite_button {
     width: 3rem;
     height: 3rem;
+    border-radius: 3rem;
   }
   
   .stitch_name {
