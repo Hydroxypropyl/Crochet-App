@@ -2,7 +2,8 @@ POST http://localhost:5000/api/stitches
 Content-Type: application/json
 
 {
-  "name": "Popcorn stitch",
+  "name": "Double crochet",
   "difficulty": 1,
-  "instructions": "Just do it"
+  "image": "doubleCrochet.jpeg",
+  "instructions": "1. Yarn over. Insert hook into the next stitch, yarn over, and pull up a loop.\n2. Yarn over, and pull through two loops on the hook.\n3. Yarn over again, and pull through both loops on the hook."
 }

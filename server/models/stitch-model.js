@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Stitch = new Schema({
         name: { type: String, required: true },
         difficulty: { type: Number, required: true },
-        image: {
+        stitchImage: {
             data: Buffer,
             contentType: String
         },
@@ -14,8 +14,10 @@ const Stitch = new Schema({
 Stitch.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
+      returnedObject.image = Buffer.from(returnedObject.stitchImage.data, 'binary').toString('base64')
       delete returnedObject._id
       delete returnedObject.__v
+      delete returnedObject.stitchImage
     }
 })
 

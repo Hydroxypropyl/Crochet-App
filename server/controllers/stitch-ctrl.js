@@ -1,18 +1,27 @@
 const Stitch = require('../models/stitch-model')
-const DEBUG = true; //Set to false when you want to retrieve stitches from database not mock data
+const fs = require('fs')
+const path = require('path')
+const DEBUG = false; //Set to false when you want to retrieve stitches from database not mock data
 
-/*//Create a stitch using the body content of the request
+/*
+//Create a stitch using the body content of the request
 createStitch = (req, res) => {
-    const body = req.body
-
-    if (!body) {
+    if (!req.body) {
         return res.status(400).json({
             success: false,
             error: 'You must provide a stitch',
         })
     }
 
-    const stitch = new Stitch(body)
+    const stitch = new Stitch({
+        name: req.body.name,
+        difficulty: req.body.difficulty,
+        stitchImage: {
+            data: fs.readFileSync(path.resolve(__dirname, './crochetImages/' + req.body.image)),
+            contentType: 'image/png'
+        },
+        instructions: req.body.instructions,
+    })
 
     if (!stitch) {
         return res.status(400).json({ success: false, error: err })
@@ -135,6 +144,7 @@ getStitches = async (req, res) => {
 }
 
 module.exports = {
+    // createStitch,
     getStitchById,
     getStitches,
 }
