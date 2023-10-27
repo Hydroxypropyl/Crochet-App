@@ -4,10 +4,10 @@ const StitchCtrl = require('../controllers/stitch-ctrl')
 
 const router = express.Router()
 
-router.post('/stitch', StitchCtrl.createStitch)
-router.put('/stitch/:id', StitchCtrl.updateStitch)
-router.delete('/stitch/:id', StitchCtrl.deleteStitch)
-router.get('/stitch/:id', StitchCtrl.getStitchById)
-router.get('/stitches', StitchCtrl.getStitches)
+router.post('/', StitchCtrl.createStitch)
+router.put('/:id', StitchCtrl.updateStitch)
+router.delete('/:id', StitchCtrl.deleteStitch)
+router.get('/:id', StitchCtrl.getStitchById)
+router.get('/', StitchCtrl.getStitches)
 
 module.exports = router

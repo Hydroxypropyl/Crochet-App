@@ -92,7 +92,7 @@ deleteStitch = async (req, res) => {
 
 //Retrieve a specific stitch according to his id
 getStitchById = async (req, res) => {
-    await Stitch.findOne({ _id: req.params.id }, (err, stitch) => {
+    await Stitch.findById(req.params.id, (err, stitch) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -108,17 +108,8 @@ getStitchById = async (req, res) => {
 
 //Retrieve all the stitches in the database
 getStitches = async (req, res) => {
-    await Stitch.find({}, (err, stitches) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!stitches.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Stitch not found` })
-        }
-        return res.status(200).json({ success: true, data: stitches })
-    }).catch(err => console.log(err))
+    const stitches = await Stitch.find({});
+    return res.status(200).json(stitches);
 }
 
 module.exports = {

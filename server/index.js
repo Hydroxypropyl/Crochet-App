@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -6,7 +7,7 @@ const db = require('./db')
 const stitchRouter = require('./routes/stitch-router')
 
 const app = express()
-const apiPort = 5000
+const PORT = process.env.PORT
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
@@ -18,6 +19,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', stitchRouter)
+app.use('/api/stitches', stitchRouter)
 
-app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

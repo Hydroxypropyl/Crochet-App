@@ -1,0 +1,8 @@
+POST http://localhost:5000/api/stitches
+Content-Type: application/json
+
+{
+  "name": "Popcorn stitch",
+  "difficulty": 1,
+  "instructions": "Just do it"
+}
