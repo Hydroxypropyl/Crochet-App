@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Counters, Favorites, Home, StitchGlossary, StitchInsert, StitchUpdate } from '../pages';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, {useState} from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Counters, Favorites, Home, StitchGlossary } from '../pages';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -175,13 +175,7 @@ const theme = createTheme(getDesignTokens(colorMode));
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
-                    <Route path="stitches" element={<StitchGlossary />}>
-                      <Route path="glossary" element={<StitchGlossary />} />
-                      <Route path="create" element={<StitchInsert />} />
-                      <Route
-                          path="update/:id" element={<StitchUpdate />}
-                      />
-                    </Route>
+                    <Route path="stitches" element={<StitchGlossary />} />
                 </Routes>
             </Router>
             </CssBaseline>

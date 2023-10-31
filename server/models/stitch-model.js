@@ -6,6 +6,7 @@ const Stitch = new Schema(
         name: { type: String, required: true },
         difficulty: { type: Number, required: true },
         image: { type: String, required: true },
+        id: {type: String, required: true},
     },
     { timestamps: true },
 )
