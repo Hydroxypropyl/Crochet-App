@@ -1,5 +1,6 @@
 import React, { useState, Component } from 'react';
 import styles from './css/counters.module.css';
+import Button from '@mui/material/Button';
 
 class CounterClass extends Component {
   constructor(props) {
@@ -11,8 +12,7 @@ class CounterClass extends Component {
   }
 
   increase = () => {
-    this.setState({counter: this.state.counter + 1}
-    )
+    this.setState({counter: this.state.counter + 1})
   }
 
   decrease = () => {
@@ -29,9 +29,9 @@ class CounterClass extends Component {
         {this.state.name}
         </p>
         <div className={styles.counterBar}>
-          <button onClick={this.decrease} className={styles.minusButton}>–</button>
+          <Button onClick={this.decrease} variant="contained" color="lightBlue">–</Button>
           <p>{this.state.counter}</p>
-          <button onClick={this.increase} className={styles.plusButton}>+</button>
+          <Button onClick={this.increase} variant="contained" color="darkBlue">+</Button>
         </div>
       </div>
     )

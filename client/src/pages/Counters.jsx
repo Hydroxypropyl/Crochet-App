@@ -1,11 +1,12 @@
 import React, { useState } from "react"; 
 import CounterClass from "./CounterClass.jsx"
 import styles from './css/counters.module.css';
+import Button from '@mui/material/Button';
+
 
 
 const Counters =() => {
   const [hideText, setHideText] = useState(true);
-
   const toggleTextVisibility = () => {
     setHideText(!hideText);
   };
@@ -16,9 +17,9 @@ const Counters =() => {
         {!hideText && <CounterClass name="Stitches" />}
       </div>
       <div>
-        <button onClick={toggleTextVisibility} className={styles.counterToggleButton}>
+        <Button onClick={toggleTextVisibility} variant="contained" color="lightPink">
           {hideText ? "Add stitch counter" : "Remove stitch counter"}
-        </button>
+        </Button>
         
       </div>
     </div>

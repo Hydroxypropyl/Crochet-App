@@ -19,7 +19,7 @@ const NavBar = () => {
 
   return (
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <StyledNav
+        <BottomNavigation color="lightBlue"
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
@@ -29,7 +29,7 @@ const NavBar = () => {
           <BottomNavigationAction label="Stitches" to="/stitches" component={Link} icon={<ListIcon />} />
           <BottomNavigationAction label="Favorites" to="/favorites" component={Link} icon={<FavoriteIcon />} />
           <BottomNavigationAction label="Counters" to="/counters" component={Link} icon={<TimerIcon />} />
-        </StyledNav>
+        </BottomNavigation>
     </Paper>
   )
 }

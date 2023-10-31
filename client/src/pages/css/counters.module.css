@@ -38,15 +38,10 @@
     padding:0.5em;
 }
 
-button {
+Button {
     box-shadow: 0.15em 0.15em 0.15em rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    background-color: #D5E1FF;
-}
-
-button:hover {
-    background-color:#D41D6D;
 }
 
 p {
