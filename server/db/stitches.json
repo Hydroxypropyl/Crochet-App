@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Popcorn stitch",
+    "difficulty": 2,
+    "image": "popcorn.jpeg",
+    "instructions": "1. Make 5 double crochet in the stitch or space indicated in the pattern.\n2. Pull the loop on the hook a little larger, so it’s easy to grab later. Drop that same loop from the hook.\n3. Count back to the first double crochet stitch. Insert the hook from back to front through the first double crochet stitch. Place the dropped look back on the hook, and draw that loop through the first stitch.\nTip: Think of the popcorn stitch as if it were popcorns a cluster of completed dc stitches that are closed at the top."
+  },
+  {
+    "name": "Single crochet",
+    "difficulty": 1,
+    "image": "singleCrochet.jpeg",
+    "instructions": "1. Insert the hook into the next stitch. Put the tip of the hook under both of the loops at the top of the stitch.\n2. Bring the yarn over the hook, from back to front, and pull a loop of yarn through the stitch. You will now have two loops on the hook.\n3. Bring the yarn over the hook again, and pull the yarn through both loops on the hook. You will now have one loop left on the hook."
+  },
+  {
+    "name": "Slip stitch",
+    "difficulty": 1,
+    "image": "slip.jpeg",
+    "instructions": "1. Insert the hook into the next stitch. Put the tip of the hook under both of the loops at the top of the stitch.\n2. Bring the yarn over the hook, from back to front, and pull a loop of yarn through the stitch.\n3. Pull that same loop through the loop on the hook. The slip stitch is complete. You will now have one loop left on the hook."
+  },
+  {
+    "name": "Moss stitch",
+    "difficulty": 3,
+    "image": "moss.jpeg",
+    "instructions": "1. Chain an even number of stitches.\n2. Row 1: Single crochet in the 4th chain from the hook, *chain 1, skip 1 chain, single crochet in next chain, repeat from * to the end of the row. The last stitch will be a single crochet in the last chain.\n3. Row 2: Chain 2, and turn. Single crochet in the chain-1 space from the previous row, *chain 1, skip 1 single crochet, single crochet in next chain-1 space, repeat from * to the end of the row. The last stitch will be a single crochet worked into the space between the chain-2 turning chain and the single crochet from the previous row.\n4. Repeat row 2 until your piece is as long as you want."
+  },
+  {
+    "name": "Chain stitch",
+    "difficulty": 1,
+    "image": "chain.jpeg",
+    "instructions": "1. Yarn over\n2. pull the yarn through the loop"
+  },
+  {
+    "name": "Double crochet",
+    "difficulty": 1,
+    "image": "doubleCrochet.jpeg",
+    "instructions": "1. Yarn over. Insert hook into the next stitch, yarn over, and pull up a loop.\n2. Yarn over, and pull through two loops on the hook.\n3. Yarn over again, and pull through both loops on the hook."
+  }
+]

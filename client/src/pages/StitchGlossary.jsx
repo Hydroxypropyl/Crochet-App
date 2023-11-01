@@ -11,12 +11,8 @@ const StitchGlossary = () => {
 
     useEffect(() => {
         api.getAllStitches().then(res => {
-          if (res.success) {
-            console.log(res.data);
-            setStitches(res.data);
-          } else {
-            window.alert(`Unable to fetch stiches`);
-          }
+            console.log(res);
+            setStitches(res);
         })
     }, [])
 
