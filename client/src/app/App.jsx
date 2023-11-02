@@ -48,13 +48,13 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <TopBanner />
             <Router>
-                <NavBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary />} />
                 </Routes>
+                <NavBar />
             </Router>
         </ThemeProvider>
     )
