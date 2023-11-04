@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, {Component } from 'react';
 import styles from './css/counters.module.css';
 import Button from '@mui/material/Button';
 
