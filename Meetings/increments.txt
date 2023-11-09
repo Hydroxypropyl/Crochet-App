@@ -1,0 +1,17 @@
+First increment : deadline 15th October
+- learn basics of React
+- initialize the front and back end and determine the structure of the database. Design the architecture so as to allow a clear/dark mode switching.
+Goal : have a skeleton of the app with a functioning menu.
+
+Second increment : deadline 1st November
+Goal 1: the user must be able to create a main counter and many secondary counters, and increase/decrease them.
+Goal 2 : the user must be able to see the stitch glossary.
+
+Third increment : deadline 17th November
+Goal 1 : user can log in/log out.
+Goal 2 : user can mark favorites, create projects and load them.
+Goal 3 : user can search through the database.
+
+Fourth increment : deadline 24th November
+Goal : polishing the front page. Add the abbreviation guide.
+Goal 2 : implement user preferences : language.
