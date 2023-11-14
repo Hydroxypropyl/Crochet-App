@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Counters, Favorites, Home, StitchGlossary } from '../pages';
+import { Counters, Favorites, Home, StitchGlossary, ProjectList, NewProjectForm } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
@@ -61,16 +60,40 @@ const getDesignTokens = (mode) => ({
       }),
   },
 components: {
+  MuiIconButton: {
+    styleOverrides: {
+      ...(mode==="light"
+      ? {
+          root: {backgroundColor:'#FFFFFF',color:'#D41D6D',},        
+        }
+      : {
+          root: {backgroundColor:'#8FB3FF',color:'#FFFFFF'},
+      })
+    }
+  },
+
   MuiToolbar: {
     styleOverrides: {
-	      root: {
+	      
+          ...(mode==="light"
+            ? {
+              root: {
+                backgroundColor: '#FFBAF0',
+                fontSize : 'bold',
+                color : '#121212'
+              }
+            }
+            : {
+              root: {
+                backgroundColor:'#D41D6D',
+                fontSize:'bold',
+                color:'#FFFFF',
+              }
+            })
           // Some CSS
-          backgroundColor: '#FFBAF0',
-          fontSize : 'bold',
-          color : '#121212'
+          
 	      },
     },
-  },
   MuiBottomNavigation: {
     styleOverrides: {
       ...(mode==="light"
@@ -89,64 +112,6 @@ components: {
   },
 },
 });
-
-/**
-const theme = createTheme({
-    palette: {
-      mode : "dark",
-      lightPink: {
-        main: '#FFBAF0',
-        light: '#FFBAF0',
-        dark: '#A29415',
-        contrastText: '#3B4948',
-      },
-      darkPink: {
-        main: '#D41D6D',
-        light: '#E9DB5D',
-        dark: '#FFFF00',
-        contrastText: '#3B4948',
-      }, 
-      lightBlue: {
-      	main: '#D5E1FF',
-      	contrastText: '#000',
-      },
-      darkBlue: {
-        main: '#8FB3FF',
-        contrastText: '#000',
-      },
-    },
-    components: {
-        // Name of the component
-        MuiButton: {
-            styleOverrides: {
-              // Name of the slot
-              root: {
-                // Some CSS
-                "&:hover": {
-     			backgroundColor: '#D41D6D',
-   		},
-              },
-            },
-        },
-        MuiToolbar: {
-            styleOverrides: {
-              // Name of the slot
-              root: {
-                // Some CSS
-                backgroundColor: '#FFBAF0',
-              },
-            },
-        },
-        MuiTypography: {
-            styleOverrides: {
-                root: {
-                    color: '#3B4948',
-                }
-            }
-        } 
-      },
-  });
-*/
 
 
 const App = () => {
@@ -167,8 +132,7 @@ const theme = createTheme(getDesignTokens(colorMode));
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline>
-            <TopBanner />
-            <Button onClick={toggleColorMode}>Toggle</Button>
+            <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
                 <NavBar />
                 <Routes>
@@ -176,6 +140,8 @@ const theme = createTheme(getDesignTokens(colorMode));
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary />} />
+                    <Route path="/projects/new" element={<NewProjectForm />} />
+                    <Route path="projects" element={<ProjectList />} />
                 </Routes>
             </Router>
             </CssBaseline>

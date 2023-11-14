@@ -7,9 +7,7 @@ const api = axios.create({
 export const getAllStitches = async () => await api.get(`/stitches`).then(response => response.data)
 export const getStitchById = async id => await api.get(`/stitch/${id}`).then(response => response.data)
 
-export const getAllProjects = async () => {
-//TODO
-}
+export const getAllProjects = async () => await api.get(`/projects/`).then(response => response.data)
 
 const apis = {
     getAllStitches,

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { styled } from '@mui/material/styles';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,10 +11,6 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     const [value, setValue] = useState('recents');
-
-    const StyledNav = styled(BottomNavigation)(() => ({
-        backgroundColor: '#D5E1FF',
-      }));
 
   return (
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
