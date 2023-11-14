@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import styles from './css/counters.module.css';
+import styles from '../styles/counters.module.css';
 import Button from '@mui/material/Button';
 
 class CounterClass extends Component {

@@ -1,6 +1,6 @@
 import React, { useState } from "react"; 
 import CounterClass from "./CounterClass.jsx"
-import styles from './css/counters.module.css';
+import styles from '../styles/counters.module.css';
 import Button from '@mui/material/Button';
 
 
