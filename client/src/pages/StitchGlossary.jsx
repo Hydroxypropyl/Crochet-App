@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import api from '../api'
-import styles from "../styles/glossary.module.css"
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
