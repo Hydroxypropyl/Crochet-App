@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Counters, Favorites, Home, StitchGlossary } from '../pages';
+import { Counters, Favorites, Home, StitchGlossary, Login } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -53,6 +53,7 @@ const App = () => {
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary />} />
+                    <Route path="login" element={<Login />} />
                 </Routes>
                 <NavBar />
             </Router>

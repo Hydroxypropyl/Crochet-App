@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const TopBanner = () => (
-    <Box sx={{ flexGrow: 1 }}>
+const TopBanner = () => {
+    return (<Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -24,6 +24,7 @@ const TopBanner = () => (
         </Toolbar>
       </AppBar>
     </Box>
-)
+    );
+}
 
 export default TopBanner
