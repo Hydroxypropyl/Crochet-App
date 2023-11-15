@@ -3,45 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Counters, Favorites, Home, StitchGlossary, Login } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../styles/theme'; 
 
 // How to dark mode in Material UI https://mui.com/material-ui/customization/dark-mode/
-
-const theme = createTheme({
-    palette: {
-      lightPink: {
-        main: '#FFBAF0',
-        // light: '#E9DB5D',
-        // dark: '#A29415',
-        contrastText: '#3B4948',
-      },
-      darkPink: {
-        main: '#D41D6D',
-        // light: '#E9DB5D',
-        // dark: '#A29415',
-        contrastText: '#3B4948',
-      }
-    },
-    components: {
-        // Name of the component
-        MuiToolbar: {
-            styleOverrides: {
-              // Name of the slot
-              root: {
-                // Some CSS
-                backgroundColor: '#FFBAF0',
-              },
-            },
-        },
-        MuiTypography: {
-            styleOverrides: {
-                root: {
-                    color: '#3B4948',
-                }
-            }
-        } 
-      },
-  });
 
 const App = () => {
     return (
