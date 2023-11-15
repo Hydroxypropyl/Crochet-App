@@ -4,23 +4,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import StarIcon from '@mui/icons-material/Star';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#AA22AA',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-const StitchItem = ({ name, image }) => {
+const StitchItem = ({ name, image, difficulty }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const toggleFavorite = async () => {
@@ -46,6 +38,12 @@ const StitchItem = ({ name, image }) => {
                     <Typography gutterBottom variant="h5" component="div">
                       {name}
                     </Typography>
+                    {Array.from({ length: difficulty }).map((_, index) => (
+                    <StarIcon key={index} color="primary" />
+                    ))}
+                    {Array.from({ length: 5-difficulty }).map((_, index) => (
+                    <StarOutlineIcon key={index} color="primary" />
+                    ))}
                   </CardContent>
                 </CardActionArea>
                 <CardActions disableSpacing sx={{position: "absolute", top:0, right:0}}>
