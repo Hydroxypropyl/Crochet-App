@@ -134,7 +134,6 @@ const theme = createTheme(getDesignTokens(colorMode));
             <CssBaseline>
             <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
-                <NavBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
@@ -143,6 +142,7 @@ const theme = createTheme(getDesignTokens(colorMode));
                     <Route path="/projects/new" element={<NewProjectForm />} />
                     <Route path="projects" element={<ProjectList />} />
                 </Routes>
+                <NavBar />
             </Router>
             </CssBaseline>
         </ThemeProvider>

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import api from '../api'
 import styles from "../styles/glossary.module.css"
 
-import StitchItem from '../components/StitchItem';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
-// Sortable table example in Material UI: https://mui.com/material-ui/react-table/#sorting-amp-selecting
+import StitchItem from '../components/StitchItem';
 
 const StitchGlossary = () => {
     const [stitches, setStitches] = useState([]);
@@ -19,12 +20,13 @@ const StitchGlossary = () => {
     console.log('TCL: StitchesList -> render -> stitches', stitches)
 
     return (
-        <div className={styles.glossary_container}>
+      <Box sx={{ flexGrow: 1, margin: 1}}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {stitches.map((row) => (
             <StitchItem key={row.id} name={row.name} image={row.image}></StitchItem>
-
           ))}
-        </div>
+        </Grid>
+      </Box>
     )
     
 }
