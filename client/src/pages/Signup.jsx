@@ -8,9 +8,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../styles/theme'; 
+import Container from '@mui/material/Container'; 
 
 export default function Login() {
   const handleSubmit = (event) => {
@@ -23,7 +21,6 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -92,6 +89,5 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

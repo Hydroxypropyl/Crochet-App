@@ -11,21 +11,27 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../styles/theme'; 
+import api from '../api'
 
 export default function Login() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    const body = {
+      username: data.get('username'),
       password: data.get('password'),
-    });
+    };
+    try {
+      const response = await api.login(body);
+      // Handle successful login
+      console.log(response.data);
+    } catch (error) {
+      // Handle login error
+      console.error(error);
+    }
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -47,10 +53,10 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -88,6 +94,5 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

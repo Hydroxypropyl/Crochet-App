@@ -5,8 +5,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from "react-router-dom";
 
 const TopBanner = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (event) => {
+    navigate("/login");
+  }
     return (<Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -18,6 +24,7 @@ const TopBanner = () => {
             edge="start"
             color="darkPink"
             aria-label="account"
+            onClick={handleClick}
           >
             <AccountCircleIcon />
           </IconButton>
