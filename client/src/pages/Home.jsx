@@ -1,6 +1,15 @@
+import { Link } from '@mui/material'
+import { SearchField, StitchItem } from '../components'
+import styles from "../styles/frontpage.module.css"
+
 const Home = () => {
   return (
-    <p>Welcome home</p>
+    <div className={styles.container}>
+      <SearchField />
+      <Link underline='none' href='/abbreviation'>Abbreviation Guide</Link>
+      <h2>Stitch of the day</h2>
+      <StitchItem />
+    </div>
   )
 }
 

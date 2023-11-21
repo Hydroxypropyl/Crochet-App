@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Counters, Favorites, Home, StitchGlossary } from '../pages';
+import { Counters, Favorites, Home, StitchGlossary, Abbreviation } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -39,7 +39,26 @@ const theme = createTheme({
                     color: '#3B4948',
                 }
             }
-        } 
+        },
+        MuiPaper: {
+          styleOverrides: {
+              root: {
+                  backgroundColor: '#FFBAF0',
+              }
+          }
+       } ,
+       MuiLink: {
+        styleOverrides: {
+          root: {
+            textAlign: 'center',
+            backgroundColor: '#D5E1FF',
+            color: 'inherit',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+            height: '30px',
+            width: '200px'
+          }
+        }
+       }
       },
   });
 
@@ -53,6 +72,7 @@ const App = () => {
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary />} />
+                    <Route path="abbreviation" element={<Abbreviation />} />
                 </Routes>
                 <NavBar />
             </Router>
