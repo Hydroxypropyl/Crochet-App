@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
+import api from '../api'
 
 import { Counters, Favorites, Home, StitchGlossary, Abbreviation,  ProjectList, NewProjectForm } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -137,30 +137,51 @@ const getDesignTokens = (mode) => ({
 
 
 const App = () => {
-const [colorMode, setColorMode] = useState('light');
+  const [colorMode, setColorMode] = useState('light');
+  const [stitches, setStitches] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-// The function that toggles between themes
-const toggleColorMode = () => {
-  // if the theme is not light, then set it to dark
-  if (colorMode === 'light') {
-    setColorMode('dark');
-  // otherwise, it should be light
-  } else {
-    setColorMode('light');
+  useEffect(() => {
+      api.getAllStitches().then(res => {
+          console.log(res);
+          setStitches(res);
+      })
+  }, [])
+
+  console.log('TCL: StitchesList -> render -> stitches', stitches)
+
+  const filterData = (query, data) => {
+    if (!query) {
+      return data;
+    } else {
+      return data.filter((d) => d.name.toLowerCase().includes(query.toLowerCase()));
+    }
+  };
+
+  const filteredStitches = filterData(searchQuery, stitches);
+
+  // The function that toggles between themes
+  const toggleColorMode = () => {
+    // if the theme is not light, then set it to dark
+    if (colorMode === 'light') {
+      setColorMode('dark');
+    // otherwise, it should be light
+    } else {
+      setColorMode('light');
+    }
   }
-}
 
-const theme = createTheme(getDesignTokens(colorMode));
+  const theme = createTheme(getDesignTokens(colorMode));
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline>
             <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
-                    <Route path="stitches" element={<StitchGlossary />} />
+                    <Route path="stitches" element={<StitchGlossary filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="/projects/new" element={<NewProjectForm />} />
                     <Route path="projects" element={<ProjectList />} />
                     <Route path="abbreviation" element={<Abbreviation />} />
