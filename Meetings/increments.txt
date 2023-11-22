@@ -16,3 +16,4 @@ Goal 4 : user must be able to access the stitch instructions.
 Fourth increment : deadline 24th November
 Goal : polishing the front page. Add the abbreviation guide.
 Goal 2 : implement user preferences : language.
+Goal 3 : add an arrow componant to come back to the previous page.

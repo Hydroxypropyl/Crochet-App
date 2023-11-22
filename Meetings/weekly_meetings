@@ -64,6 +64,10 @@ For the presentation : present home page + login, stitch glossary & favorites, t
 - Manon : stitch glossary & favorites
 - Henna : projects & counters
 
+# November, 9th: on track with increment requirements.
+# November, 16th : 11.00 - 12.00
+Presentation of current advancement of the increment. The login system has to be finished and the database must be initialised to be able to connect some of the implemented componants (project creation form, projects display). The stitch instructions page has been implemented and must be connected to the stitch items from the glossary.
+
 
 
 
