@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Counters, Favorites, Home, StitchGlossary, ProjectList, NewProjectForm } from '../pages';
+
+
+import { Counters, Favorites, Home, StitchGlossary, Abbreviation,  ProjectList, NewProjectForm } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -58,59 +60,79 @@ const getDesignTokens = (mode) => ({
           secondary: '#FFFFFF',
         },
       }),
-  },
-components: {
-  MuiIconButton: {
-    styleOverrides: {
-      ...(mode==="light"
-      ? {
-          root: {backgroundColor:'#FFFFFF',color:'#D41D6D',},        
-        }
+    },
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        ...(mode==="light"
+        ? {
+            root: {backgroundColor:'#FFFFFF',color:'#D41D6D',},        
+          }
+        : {
+            root: {backgroundColor:'#8FB3FF',color:'#FFFFFF'},
+        })
+      }
+    },
+
+    MuiToolbar: {
+      styleOverrides: {
+          
+            ...(mode==="light"
+              ? {
+                root: {
+                  backgroundColor: '#FFBAF0',
+                  fontSize : 'bold',
+                  color : '#121212'
+                }
+              }
+              : {
+                root: {
+                  backgroundColor:'#D41D6D',
+                  fontSize:'bold',
+                  color:'#FFFFF',
+                }
+              })
+            // Some CSS
+            
+          },
+    },
+    MuiBottomNavigation: {
+      styleOverrides: {
+        ...(mode==="light"
+        ? {
+          root: {
+            // Some CSS
+            backgroundColor: '#D5E1FF',
+          },
+      }
       : {
-          root: {backgroundColor:'#8FB3FF',color:'#FFFFFF'},
-      })
+          root: {
+            backgroundColor: '#8FB3FF',
+          },
+        }),
+      },
+    },
+
+    MuiPaper: {
+      styleOverrides: {
+          root: {
+              backgroundColor: '#FFBAF0',
+          }
+      }
+    } ,
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textAlign: 'center',
+          backgroundColor: '#D5E1FF',
+          color: 'inherit',
+          boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+          height: '30px',
+          width: '200px'
+        }
+      }
     }
   },
-
-  MuiToolbar: {
-    styleOverrides: {
-	      
-          ...(mode==="light"
-            ? {
-              root: {
-                backgroundColor: '#FFBAF0',
-                fontSize : 'bold',
-                color : '#121212'
-              }
-            }
-            : {
-              root: {
-                backgroundColor:'#D41D6D',
-                fontSize:'bold',
-                color:'#FFFFF',
-              }
-            })
-          // Some CSS
-          
-	      },
-    },
-  MuiBottomNavigation: {
-    styleOverrides: {
-      ...(mode==="light"
-      ? {
-	      root: {
-          // Some CSS
-          backgroundColor: '#D5E1FF',
-	      },
-     }
-     : {
-        root: {
-          backgroundColor: '#8FB3FF',
-        },
-      }),
-    },
-  },
-},
 });
 
 
@@ -134,7 +156,6 @@ const theme = createTheme(getDesignTokens(colorMode));
             <CssBaseline>
             <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
-                <NavBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
@@ -142,7 +163,9 @@ const theme = createTheme(getDesignTokens(colorMode));
                     <Route path="stitches" element={<StitchGlossary />} />
                     <Route path="/projects/new" element={<NewProjectForm />} />
                     <Route path="projects" element={<ProjectList />} />
+                    <Route path="abbreviation" element={<Abbreviation />} />
                 </Routes>
+                <NavBar />
             </Router>
             </CssBaseline>
         </ThemeProvider>
