@@ -3,10 +3,12 @@ const Schema = mongoose.Schema
 
 const Project = new Schema({
         name: { type: String, required: true },
+
         projectImage: {
             data: Buffer,
             contentType: String
         },
+
         counters: [
           {
             type: mongoose.Schema.Types.ObjectId,
@@ -17,6 +19,7 @@ const Project = new Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'User'
         }
+
     })
 
 Project.set('toJSON', {
@@ -29,4 +32,6 @@ Project.set('toJSON', {
     }
 })
 
+
 module.exports = mongoose.model('projects', Project)
+

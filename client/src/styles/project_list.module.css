@@ -1,0 +1,31 @@
+.projectList_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content : space-evenly;
+    align-items : center;
+} 
+
+.project_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.project_box {
+    align-content: center;
+}
+
+.project_label {
+
+    
+}
+.project_row_count {
+
+}
+
+.project_image {
+
+}

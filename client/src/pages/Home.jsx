@@ -4,6 +4,7 @@ import styles from "../styles/frontpage.module.css"
 
 const Home = () => {
   return (
+
     <div className={styles.container}>
       <SearchField />
       <Link underline='none' href='/abbreviation'>Abbreviation Guide</Link>
