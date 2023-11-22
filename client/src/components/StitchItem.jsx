@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
 const StitchItem = ({ name, image, difficulty }) => {
     const [isFavorite, setIsFavorite] = useState(false);
@@ -28,12 +29,20 @@ const StitchItem = ({ name, image, difficulty }) => {
           <Grid item xs={2}>
             <Card sx={{ maxWidth: 345, position: "relative" }}>
                 <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="180"
-                    image={`data:${image.contentType};base64,${image}`}
-                    alt=""
-                  />
+                    {image ? (
+                        <CardMedia
+                            component="img"
+                            height="180"
+                            image={`data:${image.contentType};base64,${image}`}
+                            alt=""
+                        />
+                    ) : (
+                        <CardMedia
+                            component={BrokenImageIcon}
+                            height="180"
+                            style={{ width: 180, height: 180 }}
+                        />
+                    )}
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       {name}
