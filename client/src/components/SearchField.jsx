@@ -6,7 +6,7 @@ const SearchField = () => {
     <Paper
       component="form"
       elevation={2}
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', backgroundColor: '', borderRadius: '25px', width: '75%', maxWidth: '600px' }}
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', backgroundColor: '', borderRadius: '25px', width: '95%', maxWidth: '600px' }}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
