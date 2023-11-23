@@ -1,0 +1,12 @@
+.stitch_page {
+    display : flex;
+    flex-flow : column wrap;
+}
+
+.top_image {
+    text-align: center;
+}
+
+.styles.favorite_button {
+    text-align: right;
+}

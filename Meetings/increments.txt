@@ -9,9 +9,11 @@ Goal 2 : the user must be able to see the stitch glossary.
 
 Third increment : deadline 17th November
 Goal 1 : user can log in/log out.
-Goal 2 : user can mark favorites, create projects and load them.
-Goal 3 : user can search through the database.
+Goal 2 : user can mark favorites, create projects and load them. 
+Goal 3 : user can search through the database, and filter/sort the glossary.
+Goal 4 : user must be able to access the stitch instructions.
 
 Fourth increment : deadline 24th November
 Goal : polishing the front page. Add the abbreviation guide.
 Goal 2 : implement user preferences : language.
+Goal 3 : add an arrow componant to come back to the previous page.

@@ -1,53 +1,157 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Counters, Favorites, Home, StitchGlossary, Login, Signup } from '../pages';
+import { Counters, Favorites, Home, StitchGlossary, Login, Signup, Abbreviation,  ProjectList, NewProjectForm } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
-import { ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 // How to dark mode in Material UI https://mui.com/material-ui/customization/dark-mode/
 
 
-const theme = createTheme({
+const getDesignTokens = (mode) => ({
   palette: {
+    mode,
+    primary: {
+      main: '#D41D6D',
+      contrastText:'#121212'
+    },
     lightPink: {
-      main: '#FFBAF0',
-      // light: '#E9DB5D',
-      // dark: '#A29415',
-      contrastText: '#3B4948',
+        main: '#FFBAF0',
+        light: '#FFBAF0',
+        dark: '#D41D6D',
+        contrastText: '#121212',
     },
     darkPink: {
       main: '#D41D6D',
-      // light: '#E9DB5D',
-      // dark: '#A29415',
-      contrastText: '#3B4948',
+      light: '#D41D6D',
+      dark: '#D41D6D',
+      contrastText: '#121212',
+    }, 
+    lightBlue: {
+      main: '#D5E1FF',
+      light: '#D5E1FF',
+      dark: '#D41D6D',
+      contrastText: '#121212',
+    },
+    darkBlue: {
+      main: '#8FB3FF',
+      light: '#8FB3FF',
+      dark: '#D41D6D',
+      contrastText: '#121212',
+    },
+  ...(mode === 'light'
+    ? {
+        text: {
+          primary: '#121212',
+          secondary: '#121212',
+        },
+    }
+    : {
+        background: {
+          default: '#121212',
+          paper: '#121212',
+        },
+        text: {
+          primary: '#FFFFFF',
+          secondary: '#FFFFFF',
+        },
+      }),
+    },
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        ...(mode==="light"
+        ? {
+            root: {backgroundColor:'#FFFFFF',color:'#D41D6D',},        
+          }
+        : {
+            root: {backgroundColor:'#8FB3FF',color:'#FFFFFF'},
+        })
+      }
+    },
+
+    MuiToolbar: {
+      styleOverrides: {
+          
+            ...(mode==="light"
+              ? {
+                root: {
+                  backgroundColor: '#FFBAF0',
+                  fontSize : 'bold',
+                  color : '#121212'
+                }
+              }
+              : {
+                root: {
+                  backgroundColor:'#D41D6D',
+                  fontSize:'bold',
+                  color:'#FFFFF',
+                }
+              })
+            // Some CSS
+            
+          },
+    },
+    MuiBottomNavigation: {
+      styleOverrides: {
+        ...(mode==="light"
+        ? {
+          root: {
+            // Some CSS
+            backgroundColor: '#D5E1FF',
+          },
+      }
+      : {
+          root: {
+            backgroundColor: '#8FB3FF',
+          },
+        }),
+      },
+    },
+
+    MuiPaper: {
+      styleOverrides: {
+          root: {
+              backgroundColor: '#FFBAF0',
+          }
+      }
+    } ,
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textAlign: 'center',
+          backgroundColor: '#D5E1FF',
+          color: 'inherit',
+          boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+          height: '30px',
+          width: '200px'
+        }
+      }
     }
   },
-  components: {
-      // Name of the component
-      MuiToolbar: {
-          styleOverrides: {
-            // Name of the slot
-            root: {
-              // Some CSS
-              backgroundColor: '#FFBAF0',
-            },
-          },
-      },
-      MuiTypography: {
-          styleOverrides: {
-              root: {
-                  color: '#3B4948',
-              }
-          }
-      } 
-    },
 });
 
+
 const App = () => {
+const [colorMode, setColorMode] = useState('light');
+
+// The function that toggles between themes
+const toggleColorMode = () => {
+  // if the theme is not light, then set it to dark
+  if (colorMode === 'light') {
+    setColorMode('dark');
+  // otherwise, it should be light
+  } else {
+    setColorMode('light');
+  }
+}
+
+const theme = createTheme(getDesignTokens(colorMode));
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline>
+            <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
             <TopBanner />
                 <Routes>
@@ -57,9 +161,13 @@ const App = () => {
                     <Route path="stitches" element={<StitchGlossary />} />
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />
+                    <Route path="/projects/new" element={<NewProjectForm />} />
+                    <Route path="projects" element={<ProjectList />} />
+                    <Route path="abbreviation" element={<Abbreviation />} />
                 </Routes>
                 <NavBar />
             </Router>
+            </CssBaseline>
         </ThemeProvider>
     )
 }

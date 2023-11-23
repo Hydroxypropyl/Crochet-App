@@ -31,7 +31,7 @@ First increment : deadline 15th October
 Goal : have a skeleton of the app with a functioning menu.
 
 Second increment : deadline 1st November
-Goal 1: the user must be able to create a main counter and many secondary counters, and increase/decrease them.
+Goal 1: the user must be able to create a main counter and a secondary counter, and increase/decrease them.
 Goal 2 : the user must be able to see the stitch glossary.
 
 Third increment : deadline 17th November
@@ -63,6 +63,10 @@ For the presentation : present home page + login, stitch glossary & favorites, t
 - Mickael : home page + login
 - Manon : stitch glossary & favorites
 - Henna : projects & counters
+
+# November, 9th: on track with increment requirements.
+# November, 16th : 11.00 - 12.00
+Presentation of current advancement of the increment. The login system has to be finished and the database must be initialised to be able to connect some of the implemented componants (project creation form, projects display). The stitch instructions page has been implemented and must be connected to the stitch items from the glossary.
 
 
 
