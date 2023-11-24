@@ -37,4 +37,4 @@ User.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('users', User)

@@ -64,20 +64,31 @@ register = async (req, res) => {
             message: 'A user with the same username already exists!',
         }); 
     }
-    
-    // Hash the provided password
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(req.body.data.password, salt, function(err, hash) {
+
+    // Hash the provided password & create the user
+    let id;
+    await bcrypt.genSalt(saltRounds, async function(err, salt) {
+        await bcrypt.hash(req.body.data.password, salt, async function(err, hash) {
             const newUser = new User({
                 username: username,
                 passwordHash: hash,
             });
 
-            console.log(newUser);
-            //TODO: Push the new User to database
+            newUser
+                .save()
+                .then(() => {
+                    id = newUser._id;
+                })
+                .catch(error => {
+                    return res.status(500).json({
+                        success: true,
+                        message: error,
+                    });
+                })
         });
     });
-
+    
+    
     //TODO: Generate token and push the token to database
     const token = "1234";
 
