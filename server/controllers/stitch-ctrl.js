@@ -1,7 +1,7 @@
 const Stitch = require('../models/stitch-model')
 const fs = require('fs')
 const path = require('path')
-const DEBUG = true; //Set to false when you want to retrieve stitches from database not mock data
+const DEBUG = false; //Set to false when you want to retrieve stitches from database not mock data
 
 /*
 //Create a stitch using the body content of the request
