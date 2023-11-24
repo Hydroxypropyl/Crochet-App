@@ -46,7 +46,7 @@ login = async (req, res) => {
 
 };
 
-register = (req, res) => {
+register = async (req, res) => {
     if (!req.body) {
         return res.status(400).json({
             success: false,
@@ -55,8 +55,16 @@ register = (req, res) => {
     }
 
     const username = req.body.data.username;
-    //TODO: Check if the user already exist.
 
+    //Check if the user already exist.
+    const user = await Stitch.findOne({ username: username });
+    if (user) {
+        return res.status(409).json({
+            success: false,
+            message: 'A user with the same username already exists!',
+        }); 
+    }
+    
     // Hash the provided password
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(req.body.data.password, salt, function(err, hash) {
