@@ -1,7 +1,6 @@
 const Stitch = require('../models/stitch-model')
 const fs = require('fs')
 const path = require('path')
-const DEBUG = false; //Set to false when you want to retrieve stitches from database not mock data
 
 /*
 //Create a stitch using the body content of the request
@@ -102,9 +101,6 @@ deleteStitch = async (req, res) => {
 
 //Retrieve a specific stitch according to his id
 getStitchById = async (req, res) => {
-    if (DEBUG) {
-        return res.status(200).json({ success: true, data: {name: "test", difficulty: "4", image: "myImage"} });
-    }
 
     await Stitch.findById(req.params.id, (err, stitch) => {
         if (err) {
@@ -122,22 +118,6 @@ getStitchById = async (req, res) => {
 
 //Retrieve all the stitches in the database
 getStitches = async (req, res) => {
-    if (DEBUG) {
-        const stitch1 = new Stitch({
-            name: 'Stitch 1',
-            difficulty: 3,
-            image: 'mockup.jpg',
-            id: '15458412485'
-        });
-        const stitch2 = new Stitch({
-            name: 'Stitch 2',
-            difficulty: 2,
-            image: 'mockup.jpg',
-            id: '54446194341'
-        });
-        const stitches = [stitch1, stitch2];
-        return res.status(200).json({ success: true, data: stitches});
-    }
 
     const stitches = await Stitch.find({});
     return res.status(200).json(stitches);
