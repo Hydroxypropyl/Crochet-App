@@ -106,18 +106,18 @@ getStitchById = async (req, res) => {
         return res.status(200).json({ success: true, data: {name: "test", difficulty: "4", image: "myImage"} });
     }
 
-    await Stitch.findById(req.params.id, (err, stitch) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!stitch) {
+    try {
+        const stitch = await Stitch.findById(request.params.id)
+        if (stitch) {
+            return res.status(200).json({ success: true, data: stitch })
+        } else {
             return res
-                .status(404)
-                .json({ success: false, error: `Stitch not found` })
+            .status(404)
+            .json({ success: false, error: `Stitch not found` })
         }
-        return res.status(200).json({ success: true, data: stitch })
-    }).catch(err => console.log(err))
+      } catch(exception) {
+        err => console.log(err)
+      }
 }
 
 //Retrieve all the stitches in the database
