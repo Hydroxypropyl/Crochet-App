@@ -8,6 +8,7 @@ const crypto = require('crypto');
 const saltRounds = 10; //Complexity of the hashing.
 const secretKey = crypto.randomBytes(64).toString('hex'); // Generate a secret key
 
+// Compare a unhashed password with a hashed one
 async function comparePasswords(plainPassword, hashedPassword) {
     return new Promise((resolve, reject) => {
       bcrypt.compare(plainPassword, hashedPassword, (err, result) => {
@@ -18,8 +19,19 @@ async function comparePasswords(plainPassword, hashedPassword) {
         }
       });
     });
-  }
+}
   
+// Decrypt the token to retrieve the id of the corresponding user, 0 if invalid
+getUserIdByToken = async (token) => {
+    jwt.verify(token, secretKey, (err, decoded) => {
+      if (err) {
+        return 0;
+      } else {
+        // Access the decoded payload
+        return decoded;
+      }
+    });
+}
 
 // Check the credentials and return a token that is added to database.
 login = async (req, res) => {
