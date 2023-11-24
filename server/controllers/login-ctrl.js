@@ -2,8 +2,11 @@ const User = require('../models/user-model')
 const fs = require('fs')
 const path = require('path')
 const bcrypt = require ('bcrypt');
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
-const saltRounds = 10; //Complexity of the hashing
+const saltRounds = 10; //Complexity of the hashing.
+const secretKey = crypto.randomBytes(64).toString('hex'); // Generate a secret key
 
 // Check the credentials and return a token that is added to database.
 login = async (req, res) => {
@@ -57,7 +60,7 @@ register = async (req, res) => {
     const username = req.body.data.username;
 
     //Check if the user already exist.
-    const user = await Stitch.findOne({ username: username });
+    const user = await User.findOne({ username: username });
     if (user) {
         return res.status(409).json({
             success: false,
@@ -65,32 +68,31 @@ register = async (req, res) => {
         }); 
     }
 
-    // Hash the provided password & create the user
-    let id;
-    await bcrypt.genSalt(saltRounds, async function(err, salt) {
-        await bcrypt.hash(req.body.data.password, salt, async function(err, hash) {
-            const newUser = new User({
-                username: username,
-                passwordHash: hash,
-            });
+    // Hash the provided password
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(req.body.data.password, salt);
 
-            newUser
-                .save()
-                .then(() => {
-                    id = newUser._id;
-                })
-                .catch(error => {
-                    return res.status(500).json({
-                        success: true,
-                        message: error,
-                    });
-                })
-        });
+    const newUser = new User({
+        username: username,
+        passwordHash: hash,
     });
+
+    // Save the user to database
+    try {
+        await newUser.save();
+        } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+        
     
-    
-    //TODO: Generate token and push the token to database
-    const token = "1234";
+    // Generate JWT token using the secret key
+    const payload = {
+        userId: newUser._id,
+      };
+    const token = jwt.sign(payload, secretKey, {});
 
     return res.status(200).json({
         success: true,
