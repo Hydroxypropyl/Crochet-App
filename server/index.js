@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const db = require('./db')
 const stitchRouter = require('./routes/stitch-router')
-//const projectRouter = require('./routes/project-router')
+const projectRouter = require('./routes/project-router')
 
 const app = express()
 const PORT = process.env.PORT
@@ -21,6 +21,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/stitches', stitchRouter)
-//app.use('/api/projects', projectRouter)
+app.use('/api/projects', projectRouter)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

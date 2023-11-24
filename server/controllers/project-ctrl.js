@@ -128,7 +128,12 @@ getProjects = async (req, res) => {
     return res.status(200).json(projects);
 }
 
+
+createNewProject = async(req, res) => {
+    console.log("should add the project to database")
+}
 module.exports = {
     getProjectById,
     getProjects,
+    createNewProject,
 }
