@@ -107,7 +107,7 @@ getStitchById = async (req, res) => {
     }
 
     try {
-        const stitch = await Stitch.findById(request.params.id)
+        const stitch = await Stitch.findById(req.params.id)
         if (stitch) {
             return res.status(200).json({ success: true, data: stitch })
         } else {
