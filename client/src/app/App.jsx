@@ -151,9 +151,8 @@ const theme = createTheme(getDesignTokens(colorMode));
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline>
-            <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
-            <TopBanner />
+            <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
