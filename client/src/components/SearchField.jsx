@@ -14,6 +14,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
   overflow: 'auto',
   maxHeight: 200,
+  maxWidth: 580,
   border: '1px solid rgba(0,0,0,.25)',
   '& li.Mui-focused': {
     backgroundColor: '#4a8df6',
@@ -41,17 +42,15 @@ const SearchField = ({ autoComplete, filteredStitches, setSearchQuery }) => {
     getOptionLabel: (option) => option.name,
   });
 
-  const onKeyPress = (e) => {
-    if (e.keyCode === 13 && e.target.value.length > 0){
-      e.preventDefault()
+  const onKeyPress = (event) => {
+    if (event.keyCode === 13 && event.target.value.length > 0){
+      event.preventDefault()
       if (filteredStitches.length === 1) {
         navigate('/stitches/' + filteredStitches[0].id)
         setSearchQuery('')
       }
     }
   }
-
-  console.log('inputprops', getInputProps())
 
   return (
     <Paper
@@ -73,13 +72,13 @@ const SearchField = ({ autoComplete, filteredStitches, setSearchQuery }) => {
           sx={{ ml: 1, flex: 1, width: '90%' }}
           placeholder="Search for a stitch"
           inputProps={{ 'aria-label': 'search stitch', ...getInputProps()}}
-          onChange={(e) => {
-            e.preventDefault()
-            setSearchQuery(e.target.value)
+          onChange={(event) => {
+            event.preventDefault()
+            setSearchQuery(event.target.value)
           }}
           onKeyDown={(e) => onKeyPress(e)}
         />
-      <SearchIcon />
+      <SearchIcon sx={{ margin: '5px', position: 'fixed' }} />
       {groupedOptions.length > 0 && autoComplete ? (
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
