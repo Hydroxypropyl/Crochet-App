@@ -8,6 +8,19 @@ const crypto = require('crypto');
 const saltRounds = 10; //Complexity of the hashing.
 const secretKey = crypto.randomBytes(64).toString('hex'); // Generate a secret key
 
+async function comparePasswords(plainPassword, hashedPassword) {
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(plainPassword, hashedPassword, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+  
+
 // Check the credentials and return a token that is added to database.
 login = async (req, res) => {
     if (!req.body) {
@@ -17,34 +30,48 @@ login = async (req, res) => {
         })
     }
 
-    //TODO: Check existence of username & retrieve the hashed passeword stored in database
-    const db_hashedPassword = "1234";
+    //Check existence of username & retrieve the hashed passeword stored in database with his salt
+    const user = await User.findOne({ username: req.body.data.username });
 
-    // Check if hashed password match each other
-    let login_sucess = false;
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(req.body.data.password, salt, function(err, hash) {
-            bcrypt.compare(db_hashedPassword, hash, function(err, result) {
-                login_sucess = result;
-            });
-              
-         });
-      });
-      
-      if (login_sucess) {
-        //TODO Generate token
-        const token = "1234"
+    let dbHash = "";
+    if (!user) {
+        return res.status(404).json({
+            success: false,
+            message: 'No user match the provided username!',
+        }); 
+    } else {
+        dbHash = user.passwordHash;
+    }
+
+    // Compare the hashed password
+    let loginSuccess;
+    try {
+        loginSuccess = await comparePasswords(req.body.data.password, dbHash);
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Error when trying to compare the password! ${error}`,
+        });
+    }
+
+    if (loginSuccess) {
+        // Generate JWT token using the secret key
+        const payload = {
+            userId: user._id,
+        };
+        const token = jwt.sign(payload, secretKey, {});
+
         return res.status(200).json({
             success: true,
             token: token,
             message: 'Successful login!',
         });
-      } else {
-        return res.status(401).json({
-            success: false,
-            message: 'Invalid password!',
-        });
-      }
+    } else {
+      return res.status(401).json({
+          success: false,
+          message: 'Invalid password!',
+      });
+    }
 
 
 };
