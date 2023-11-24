@@ -6,7 +6,7 @@ import api from '../api'
 const StitchPage = () => {
     const { id } = useParams();
     const [stitch, setStitch] = useState([]);
-
+    console.log(id)
     useEffect(() => {
         api.getStitchById(id).then(res => {
             console.log(res);
@@ -14,6 +14,7 @@ const StitchPage = () => {
         })
     }, [id]);
 
+    console.log(stitch)
     const toggleFavorite = {
         //TODO: add/remove to the list of favorite and sync with server
     }
