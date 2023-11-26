@@ -5,15 +5,21 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 
 const TopBanner = ({ onToggleColorMode, colorMode }) => {
   const navigate = useNavigate();
 
   const handleClick = (event) => {
-    navigate("/login");
+    if (localStorage.getItem("authToken")) {
+      localStorage.removeItem("authToken");
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
   }
 
   return (
@@ -45,7 +51,12 @@ const TopBanner = ({ onToggleColorMode, colorMode }) => {
               aria-label="account"
               onClick={handleClick}
             >
-              <AccountCircleIcon />
+              {localStorage.getItem("authToken") ? (
+                <LogoutIcon />
+              ) : (
+                <LoginIcon />
+              )}
+              
             </IconButton>
           </div>
         </Toolbar>
