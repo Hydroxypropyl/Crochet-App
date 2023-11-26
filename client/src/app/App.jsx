@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Counters, Favorites, Home, StitchGlossary, Login, Signup, Abbreviation,  ProjectList, NewProjectForm } from '../pages';
+import { Counters, Favorites, Home, StitchGlossary, Login, Signup, Abbreviation,  ProjectList, NewProjectForm, StitchPage } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -178,6 +178,7 @@ const theme = createTheme(getDesignTokens(colorMode));
                     <Route path="/projects/new" element={<NewProjectForm />} />
                     <Route path="projects" element={<ProjectList />} />
                     <Route path="abbreviation" element={<Abbreviation />} />
+                    <Route path="stitches/:id" element={<StitchPage />} />
                 </Routes>
                 <NavBar />
             </Router>

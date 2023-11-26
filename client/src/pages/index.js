@@ -7,6 +7,7 @@ import Signup from './Signup'
 import Abbreviation from './Abbreviation'
 import NewProjectForm from './NewProjectForm'
 import ProjectList from './ProjectList'
+import StitchPage from './StitchPage'
 
-export { StitchGlossary, Home, Favorites, Counters, Login, Signup, Abbreviation, NewProjectForm, ProjectList }
+export { StitchGlossary, Home, Favorites, Counters, Login, Signup, Abbreviation, NewProjectForm, ProjectList, StitchPage }
 

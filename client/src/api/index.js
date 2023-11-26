@@ -18,7 +18,7 @@ api.interceptors.request.use((config) => {
 });
 
 export const getAllStitches = async () => await api.get(`/stitches`).then(response => response.data)
-export const getStitchById = async id => await api.get(`/stitch/${id}`).then(response => response.data)
+export const getStitchById = async id => await api.get(`/stitches/${id}`).then(response => response.data)
 export const login = async data => await api.post('/login/signin', { data }).then(response => response.data)
 export const register = async data => await api.post('/login/signup', { data }).then(response => response.data)
 
