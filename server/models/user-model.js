@@ -7,7 +7,10 @@ const User = mongoose.Schema({
     required: true,
     unique: true
   },
-  passwordHash: String,
+  passwordHash: {
+    type: String,
+    required: true,
+  },
   projects: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -34,4 +37,4 @@ User.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('users', User)

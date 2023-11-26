@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-
-import { Counters, Favorites, Home, StitchGlossary, Abbreviation,  ProjectList, NewProjectForm, StitchPage } from '../pages';
+import { Counters, Favorites, Home, StitchGlossary, Login, Signup, Abbreviation,  ProjectList, NewProjectForm, StitchPage } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 // How to dark mode in Material UI https://mui.com/material-ui/customization/dark-mode/
 
@@ -135,9 +134,22 @@ const getDesignTokens = (mode) => ({
   },
 });
 
-
 const App = () => {
 const [colorMode, setColorMode] = useState('light');
+const [open, setOpen] = useState(false);
+const [message, setMessage] = useState("Default message");
+const [severity, setSeverity] = useState("info");
+
+const handleClose = (event) => {
+  setOpen(false);
+};
+
+//Set the message and the severity ("error", "info", "success", "warning") and pop up a message for 2 sec
+const setAndPopMessage = (message, severity = "info") => {
+  setMessage(message);
+  setSeverity(severity);
+  setOpen(true);
+}
 
 // The function that toggles between themes
 const toggleColorMode = () => {
@@ -154,13 +166,15 @@ const theme = createTheme(getDesignTokens(colorMode));
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline>
-            <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode}/>
             <Router>
+            <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode} setAndPopMessage={setAndPopMessage}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary />} />
+                    <Route path="login" element={<Login setAndPopMessage={setAndPopMessage} />} />
+                    <Route path="signup" element={<Signup setAndPopMessage={setAndPopMessage} />} />
                     <Route path="/projects/new" element={<NewProjectForm />} />
                     <Route path="projects" element={<ProjectList />} />
                     <Route path="abbreviation" element={<Abbreviation />} />
@@ -168,6 +182,11 @@ const theme = createTheme(getDesignTokens(colorMode));
                 </Routes>
                 <NavBar />
             </Router>
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                {message}
+              </Alert>
+            </Snackbar>
             </CssBaseline>
         </ThemeProvider>
     )
