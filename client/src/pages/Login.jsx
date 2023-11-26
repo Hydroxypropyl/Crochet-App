@@ -14,7 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import api from '../api'
 
-export default function Login() {
+export default function Login({ setAndPopMessage }) {
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -29,13 +30,15 @@ export default function Login() {
       if (response.success) {
         // Save token in localstorage
         localStorage.setItem('authToken', response.token);
+        setAndPopMessage(response.message, "success");
         navigate("/");
       } else {
         //TODO feedback
+        setAndPopMessage(response.message, "error");
       }
     } catch (error) {
       // Handle login error
-      console.error(error);
+      setAndPopMessage(`An error has occured: ${error}`, "error");
     }
   };
 

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container'; 
 import api from '../api'
 
-export default function Login() {
+export default function Signup({ setAndPopMessage }) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -25,7 +25,7 @@ export default function Login() {
     // Check if the passwords match
     if (password !== password_bis) {
       // TODO: feedback to user
-      console.log("Passwords do not match");
+      setAndPopMessage("Passwords do not match each other!", "error");
       return;
     }
 
@@ -38,13 +38,13 @@ export default function Login() {
       if (response.success) {
         // Save token in localstorage
         localStorage.setItem('authToken', response.token);
+        setAndPopMessage(response.message, "success");
         navigate("/");
       } else {
-        //TODO feedback
+        setAndPopMessage(response.message, "error");
       }
     } catch (error) {
-      // TODO Handle registering error
-      console.error(error);
+      setAndPopMessage(error, "success");
     }
   };
 

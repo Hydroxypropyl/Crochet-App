@@ -10,12 +10,13 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 
-const TopBanner = ({ onToggleColorMode, colorMode }) => {
+const TopBanner = ({ onToggleColorMode, colorMode, setAndPopMessage }) => {
   const navigate = useNavigate();
 
   const handleClick = (event) => {
     if (localStorage.getItem("authToken")) {
       localStorage.removeItem("authToken");
+      setAndPopMessage("Successful logout!", "success");
       navigate("/");
     } else {
       navigate("/login");

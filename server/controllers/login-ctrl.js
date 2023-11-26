@@ -36,9 +36,9 @@ getUserIdByToken = async (token) => {
 // Check the credentials and return a token that is added to database.
 login = async (req, res) => {
     if (!req.body) {
-        return res.status(400).json({
+        return res.status(202).json({
             success: false,
-            error: 'You must provide credentials',
+            message: 'You must provide credentials',
         })
     }
 
@@ -47,7 +47,7 @@ login = async (req, res) => {
 
     let dbHash = "";
     if (!user) {
-        return res.status(404).json({
+        return res.status(202).json({
             success: false,
             message: 'No user match the provided username!',
         }); 
@@ -60,9 +60,9 @@ login = async (req, res) => {
     try {
         loginSuccess = await comparePasswords(req.body.data.password, dbHash);
     } catch (error) {
-        return res.status(500).json({
+        return res.status(202).json({
             success: false,
-            message: `Error when trying to compare the password! ${error}`,
+            message: `Error when trying to compare the password!`,
         });
     }
 
@@ -79,7 +79,7 @@ login = async (req, res) => {
             message: 'Successful login!',
         });
     } else {
-      return res.status(401).json({
+      return res.status(202).json({
           success: false,
           message: 'Invalid password!',
       });
@@ -89,10 +89,10 @@ login = async (req, res) => {
 };
 
 register = async (req, res) => {
-    if (!req.body) {
-        return res.status(400).json({
+    if (!req.body || !req.body.data.username || !req.body.data.password || req.body.data.username==="" || req.body.data.password==="") {
+        return res.status(202).json({
             success: false,
-            error: 'You must provide credentials',
+            message: 'You must provide credentials',
         })
     }
 
@@ -101,7 +101,7 @@ register = async (req, res) => {
     //Check if the user already exist.
     const user = await User.findOne({ username: username });
     if (user) {
-        return res.status(409).json({
+        return res.status(202).json({
             success: false,
             message: 'A user with the same username already exists!',
         }); 
@@ -122,7 +122,7 @@ register = async (req, res) => {
         } catch (error) {
         return res.status(500).json({
             success: false,
-            message: error.message,
+            message: "Error when saving into database!"
         });
     }
         
