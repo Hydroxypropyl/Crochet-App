@@ -3,23 +3,33 @@ import api from '../api';
 import ProjectItem from '../components/projectItem';
 import Button from '@mui/material/Button';
 import styles from '../styles/project_list.module.css';
+import { useNavigate } from "react-router-dom";
 
-const ProjectList = () => {
+const ProjectList = ({ setAndPopMessage }) => {
     const [projects, setProjects] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         api.getAllProjects().then(res => {
-            setProjects(res);
-            console.log(res);
+            if (res.success) {
+                setProjects(res);
+            } else {
+                setAndPopMessage(res.message, res.severity);
+                navigate(res.location);
+            }
         })
-    }, [])
+    }, [setAndPopMessage, navigate]);
 
     return (
         <div>
             <div className={styles.projectList_container}>
-            {projects.map((project) => (
-                <ProjectItem className={styles.projectItem} name={project.label} id={project.id} image={project.image} rowCount={project.rowCount}></ProjectItem>
+            {projects.length ? (
+                projects.map((project) => (
+                    <ProjectItem className={styles.projectItem} name={project.label} id={project.id} image={project.image} rowCount={project.rowCount}></ProjectItem>
 
-            ))}
+                ))
+            ) : (
+                <p>No project yet!</p>
+            )} 
             </div>
             <div>
                 <Button variant="contained" color="darkBlue">Create new project</Button>

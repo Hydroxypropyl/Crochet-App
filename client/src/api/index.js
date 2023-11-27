@@ -23,6 +23,7 @@ export const login = async data => await api.post('/login/signin', { data }).the
 export const register = async data => await api.post('/login/signup', { data }).then(response => response.data)
 
 export const getAllProjects = async () => await api.get(`/projects/`).then(response => response.data)
+export const createNewProject = async data => await api.post('/projects/new', { data }).then(response => response.data)
 
 const apis = {
     getAllStitches,

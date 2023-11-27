@@ -175,8 +175,8 @@ const theme = createTheme(getDesignTokens(colorMode));
                     <Route path="stitches" element={<StitchGlossary />} />
                     <Route path="login" element={<Login setAndPopMessage={setAndPopMessage} />} />
                     <Route path="signup" element={<Signup setAndPopMessage={setAndPopMessage} />} />
-                    <Route path="/projects/new" element={<NewProjectForm />} />
-                    <Route path="projects" element={<ProjectList />} />
+                    <Route path="/projects/new" element={<NewProjectForm setAndPopMessage={setAndPopMessage} />} />
+                    <Route path="projects" element={<ProjectList setAndPopMessage={setAndPopMessage} />} />
                     <Route path="abbreviation" element={<Abbreviation />} />
                     <Route path="stitches/:id" element={<StitchPage />} />
                 </Routes>

@@ -3,6 +3,8 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import React, {useState} from 'react';
 import styles from '../styles/projectForm.module.css';
+import { useNavigate } from "react-router-dom";
+import api from '../api'
 
 const UploadImageButton = ({ onFileSelect }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -39,14 +41,40 @@ const UploadImageButton = ({ onFileSelect }) => {
 };
 
 
-const NewProjectForm = () => {
+const NewProjectForm = ({ setAndPopMessage }) => {
   const [name, setName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    alert(`The name you entered was: ${name}, the file is: ${selectedFile}`);
-  }
+    const buttonName = event.nativeEvent.explicitOriginalTarget.name || event.nativeEvent.target.name;
+
+    const body = {
+      name: name,
+      selectedFile: selectedFile,
+    };
+
+    try {
+      const response = await api.createNewProject(body);
+      if (response.success && response.location) {
+        setAndPopMessage(response.message, response.severity)
+
+        // Redirect to the right page depending on the button
+        if (buttonName==="saveOnly") {
+          navigate("/projects");
+        } else {
+          navigate(response.location);
+        }
+
+      } else {
+        setAndPopMessage(response.message, response.severity);
+      }
+    } catch (error) {
+      setAndPopMessage(error, "error");
+    }
+  };
 
   const handleFileSelect = (file) => {
     setSelectedFile(file);
@@ -66,8 +94,8 @@ const NewProjectForm = () => {
         </div>
         <UploadImageButton onFileSelect={handleFileSelect}></UploadImageButton>
         <div className={styles.saveButtons_container}>
-          <Button type="submit" variant="contained" color="lightBlue">Save and exit</Button>
-          <Button type="submit" variant="contained" color="darkBlue">Save and start</Button>
+          <Button type="submit" name="saveOnly" variant="contained" color="lightBlue">Save and exit</Button>
+          <Button type="submit" name="saveThenGo" variant="contained" color="darkBlue">Save and start</Button>
         </div>
       </form>
   )

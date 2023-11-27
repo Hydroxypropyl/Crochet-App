@@ -12,7 +12,6 @@ const StitchGlossary = () => {
 
     useEffect(() => {
         api.getAllStitches().then(res => {
-            console.log(res);
             setStitches(res);
         })
     }, [])

@@ -126,17 +126,24 @@ getProjects = async (req, res) => {
     const token = authorizationHeader.substring('Bearer '.length);
 
     const id = await loginControl.getUserIdByToken(token);
+
     if (!id) {
         // Token is invalid
         return res.status(202).json({
             success: false,
             severity: "error",
             message: 'Invalid token, please logout and login again!',
+            location: "/",
         })
     }
     
     const projects = await Project.find({user: id});
-    return res.status(200).json(projects);
+
+    return res.status(202).json({
+        success: true,
+        severity: "success",
+        message: 'Retrieve the projects successfully!',
+    })
 }
 
 

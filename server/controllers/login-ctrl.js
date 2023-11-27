@@ -23,12 +23,13 @@ async function comparePasswords(plainPassword, hashedPassword) {
   
 // Decrypt the token to retrieve the id of the corresponding user, 0 if invalid
 getUserIdByToken = async (token) => {
-    jwt.verify(token, secretKey, (err, decoded) => {
+    return await jwt.verify(token, secretKey, (err, decoded) => {
       if (err) {
         return 0;
       } else {
         // Access the decoded payload
-        return decoded;
+        return decoded.userId;
+        ;
       }
     });
 }
@@ -144,4 +145,5 @@ register = async (req, res) => {
 module.exports = {
     login,
     register,
+    getUserIdByToken,
 }
