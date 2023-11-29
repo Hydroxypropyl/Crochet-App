@@ -1,15 +1,11 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useState } from "react";
 
-const Sort = ({ filteredStitches }) => {
+const Sort = ({ sortData }) => {
   const [sort, setSort] = useState('');
 
   const handleChange = (event) => {
-    if (event.target.value === 'A to Z') {
-      console.log('Heelloo')
-      filteredStitches.sort((a,b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
-      console.log(filteredStitches)
-    }
+    sortData(event)
     setSort(event.target.value);
   };
 

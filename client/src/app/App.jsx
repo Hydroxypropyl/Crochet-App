@@ -158,6 +158,24 @@ const App = () => {
     }
   };
 
+  const sortData = (event) => {
+    if (event.target.value === 'A to Z') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
+      setStitches(sorted)
+    } else if (event.target.value === 'Z to A') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => b.name.charCodeAt(0) - a.name.charCodeAt(0));
+      setStitches(sorted)
+    } else if (event.target.value === 'Easiest first') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => a.difficulty - b.difficulty);
+      setStitches(sorted)
+    } else if (event.target.value === 'Hardest first') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => b.difficulty - a.difficulty);
+      setStitches(sorted)
+    } else if (event.target.value === '') {
+      setStitches(filteredStitches)
+    }
+  };
+
   const filteredStitches = filterData(searchQuery, stitches);
 
   // The function that toggles between themes
@@ -181,7 +199,7 @@ const App = () => {
                     <Route path="/" element={<Home filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
-                    <Route path="stitches" element={<StitchGlossary filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
+                    <Route path="stitches" element={<StitchGlossary sortData={sortData} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="/projects/new" element={<NewProjectForm />} />
                     <Route path="projects" element={<ProjectList />} />
                     <Route path="abbreviation" element={<Abbreviation />} />
