@@ -1,7 +1,7 @@
 const Project = require('../models/project-model')
 const fs = require('fs')
 const path = require('path')
-const DEBUG = true; //Set to false when you want to retrieve stitches from database not mock data
+const DEBUG = false; //Set to false when you want to retrieve stitches from database not mock data
 
 /*
 //Create a stitch using the body content of the request
@@ -128,7 +128,12 @@ getProjects = async (req, res) => {
     return res.status(200).json(projects);
 }
 
+
+createNewProject = async(req, res) => {
+    console.log("should add the project to database")
+}
 module.exports = {
     getProjectById,
     getProjects,
+    createNewProject,
 }

@@ -7,6 +7,6 @@ const router = express.Router()
 //router.post('/', StitchCtrl.createStitch)
 router.get('/:id', ProjectCtrl.getProjectById)
 router.get('/', ProjectCtrl.getProjects)
-router.get('/new', ProjectCtrl.createNewProject)
+router.post('/new', ProjectCtrl.createNewProject)
 
 module.exports = router

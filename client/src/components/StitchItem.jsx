@@ -13,9 +13,11 @@ import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
-const StitchItem = ({ name, image, difficulty }) => {
-    const [isFavorite, setIsFavorite] = useState(false);
+import { useNavigate } from "react-router-dom";
 
+const StitchItem = ({id, name, image, difficulty }) => {
+    const [isFavorite, setIsFavorite] = useState(false);
+    const navigate = useNavigate();
     const toggleFavorite = async () => {
         //TODO: add/remove to the list of favorite and sync with server
 
@@ -25,9 +27,12 @@ const StitchItem = ({ name, image, difficulty }) => {
       }
     }
 
+    const navigateToInstructions = () => {
+      navigate(`/stitches/${id}`);
+    }
     return (         
           <Grid item xs={2}>
-            <Card sx={{ maxWidth: 345, position: "relative" }}>
+            <Card onClick={navigateToInstructions} sx={{ maxWidth: 345, position: "relative" }}>
                 <CardActionArea>
                     {image ? (
                         <CardMedia

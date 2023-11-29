@@ -4,6 +4,7 @@ import api from '../api'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
+
 import StitchItem from '../components/StitchItem';
 import { SearchField } from '../components';
 
@@ -24,7 +25,7 @@ const StitchGlossary = () => {
         <SearchField />
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           {stitches.map((row) => (
-            <StitchItem key={row.id} name={row.name} image={row.image} difficulty={row.difficulty}></StitchItem>
+            <StitchItem key={row.id} name={row.name} image={row.image} difficulty={row.difficulty} id={row.id}></StitchItem>
           ))}
         </Grid>
       </Box>

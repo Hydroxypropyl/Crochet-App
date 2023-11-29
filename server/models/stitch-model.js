@@ -14,7 +14,12 @@ const Stitch = new Schema({
 Stitch.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
-      returnedObject.image = Buffer.from(returnedObject.stitchImage.data, 'binary').toString('base64')
+      try {
+        returnedObject.image = Buffer.from(returnedObject.stitchImage.data, 'binary').toString('base64')
+      } catch(e) {
+        //Error occured
+        //TODO push a default image
+      }
       delete returnedObject._id
       delete returnedObject.__v
       delete returnedObject.stitchImage
