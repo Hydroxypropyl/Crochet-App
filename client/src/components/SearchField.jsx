@@ -1,5 +1,6 @@
 import { Paper, InputBase } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import InputAdornment from '@mui/material/InputAdornment';
 import { useNavigate } from 'react-router-dom'
 import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { styled } from '@mui/system';
@@ -69,7 +70,7 @@ const SearchField = ({ autoComplete, filteredStitches, setSearchQuery }) => {
       {...getRootProps()}
     >
       <InputBase
-          sx={{ ml: 1, flex: 1, width: '90%' }}
+          sx={{ ml: 1, flex: 1, width: '98%' }}
           placeholder="Search for a stitch"
           inputProps={{ 'aria-label': 'search stitch', ...getInputProps()}}
           onChange={(event) => {
@@ -77,8 +78,12 @@ const SearchField = ({ autoComplete, filteredStitches, setSearchQuery }) => {
             setSearchQuery(event.target.value)
           }}
           onKeyDown={(e) => onKeyPress(e)}
+          endAdornment={
+            <InputAdornment position="end">
+              <SearchIcon sx={{ margin: '5px' }} />
+            </InputAdornment>
+          }
         />
-      <SearchIcon sx={{ margin: '5px', position: 'fixed' }} />
       {groupedOptions.length > 0 && autoComplete ? (
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (

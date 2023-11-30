@@ -172,6 +172,7 @@ const App = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("Default message");
   const [severity, setSeverity] = useState("info");
+  const [dayStitch, setDayStitch] = useState({})
 
   const handleClose = (event) => {
     setOpen(false);
@@ -188,6 +189,7 @@ const App = () => {
       api.getAllStitches().then(res => {
           console.log(res);
           setStitches(res);
+          setDayStitch(res[new Date().getDate() % res.length])
       })
   }, [])
 
@@ -239,7 +241,7 @@ const App = () => {
             <Router>
             <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode} setAndPopMessage={setAndPopMessage}/>
                 <Routes>
-                    <Route path="/" element={<Home filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
+                    <Route path="/" element={<Home dayStitch={dayStitch} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary sortData={sortData} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
