@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import api from '../api'
 import { Counters, Favorites, Home, StitchGlossary, Login, Signup, Abbreviation,  ProjectList, NewProjectForm, StitchPage } from '../pages';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavBar, TopBanner } from '../components';
@@ -165,44 +166,83 @@ const getDesignTokens = (mode) => ({
 });
 
 const App = () => {
-const [colorMode, setColorMode] = useState('light');
-const [open, setOpen] = useState(false);
-const [message, setMessage] = useState("Default message");
-const [severity, setSeverity] = useState("info");
+  const [colorMode, setColorMode] = useState('light');
+  const [stitches, setStitches] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("Default message");
+  const [severity, setSeverity] = useState("info");
 
-const handleClose = (event) => {
-  setOpen(false);
-};
+  const handleClose = (event) => {
+    setOpen(false);
+  };
 
-//Set the message and the severity ("error", "info", "success", "warning") and pop up a message for 2 sec
-const setAndPopMessage = (message, severity = "info") => {
-  setMessage(message);
-  setSeverity(severity);
-  setOpen(true);
-}
-
-// The function that toggles between themes
-const toggleColorMode = () => {
-  // if the theme is not light, then set it to dark
-  if (colorMode === 'light') {
-    setColorMode('dark');
-  // otherwise, it should be light
-  } else {
-    setColorMode('light');
+  //Set the message and the severity ("error", "info", "success", "warning") and pop up a message for 2 sec
+  const setAndPopMessage = (message, severity = "info") => {
+    setMessage(message);
+    setSeverity(severity);
+    setOpen(true);
   }
-}
 
-const theme = createTheme(getDesignTokens(colorMode));
+  useEffect(() => {
+      api.getAllStitches().then(res => {
+          console.log(res);
+          setStitches(res);
+      })
+  }, [])
+
+  console.log('TCL: StitchesList -> render -> stitches', stitches)
+
+  const filterData = (query, data) => {
+    if (!query) {
+      return data;
+    } else {
+      return data.filter((d) => d.name.toLowerCase().includes(query.toLowerCase()));
+    }
+  };
+
+  const sortData = (event) => {
+    if (event.target.value === 'A to Z') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
+      setStitches(sorted)
+    } else if (event.target.value === 'Z to A') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => b.name.charCodeAt(0) - a.name.charCodeAt(0));
+      setStitches(sorted)
+    } else if (event.target.value === 'Easiest first') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => a.difficulty - b.difficulty);
+      setStitches(sorted)
+    } else if (event.target.value === 'Hardest first') {
+      const sorted = filteredStitches.slice(0).sort((a,b) => b.difficulty - a.difficulty);
+      setStitches(sorted)
+    } else if (event.target.value === '') {
+      setStitches(filteredStitches)
+    }
+  };
+
+  const filteredStitches = filterData(searchQuery, stitches);
+
+  // The function that toggles between themes
+  const toggleColorMode = () => {
+    // if the theme is not light, then set it to dark
+    if (colorMode === 'light') {
+      setColorMode('dark');
+    // otherwise, it should be light
+    } else {
+      setColorMode('light');
+    }
+  }
+
+  const theme = createTheme(getDesignTokens(colorMode));
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline>
             <Router>
             <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode} setAndPopMessage={setAndPopMessage}/>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="favorites" element={<Favorites />} />
                     <Route path="counters" element={<Counters />} />
-                    <Route path="stitches" element={<StitchGlossary />} />
+                    <Route path="stitches" element={<StitchGlossary sortData={sortData} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="login" element={<Login setAndPopMessage={setAndPopMessage} />} />
                     <Route path="signup" element={<Signup setAndPopMessage={setAndPopMessage} />} />
                     <Route path="/projects/new" element={<NewProjectForm />} />
