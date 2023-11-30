@@ -18,18 +18,21 @@ const getDesignTokens = (mode) => ({
       main: '#D41D6D',
       contrastText:'#121212'
     },
+
     lightPink: {
         main: '#FFBAF0',
         light: '#FFBAF0',
         dark: '#D41D6D',
         contrastText: '#121212',
     },
+
     darkPink: {
-      main: '#D41D6D',
+      main: '#',
       light: '#D41D6D',
       dark: '#D41D6D',
       contrastText: '#121212',
     }, 
+    
     lightBlue: {
       main: '#D5E1FF',
       light: '#D5E1FF',
@@ -114,21 +117,48 @@ const getDesignTokens = (mode) => ({
 
     MuiPaper: {
       styleOverrides: {
+        ...(mode==="light"
+        ? {
           root: {
-              backgroundColor: '#FFBAF0',
+            backgroundColor: '#FFBAF0',
           }
-      }
+        }
+        : {
+          root: {
+            backgroundColor:'#D41D6D',
+          }
+        })
+    },
     } ,
     MuiLink: {
       styleOverrides: {
-        root: {
-          textAlign: 'center',
-          backgroundColor: '#D5E1FF',
-          color: 'inherit',
-          boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-          height: '30px',
-          width: '200px'
-        }
+        ...(mode==="light"
+        ? {
+            root: {
+              display: "flex",
+              aligItems: "center",
+              justifyContent: "center",
+              textAlign: 'center',
+              backgroundColor: '#D5E1FF',
+              color: 'inherit',
+              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+              height: '30px',
+              width: '200px'
+            }
+          }:{
+            root: {
+              display: "flex",
+              aligItems: "center",
+              justifyContent: "center",
+              textAlign: 'center',
+              backgroundColor: '#8FB3FF',
+              color: 'inherit',
+              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+              height: '30px',
+              width: '200px',
+            }
+          }),
+        
       }
     }
   },
