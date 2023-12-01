@@ -10,10 +10,11 @@ const ProjectItem = ({name, projectImage, counters, id}) => {
         //TODO
     }
     const theme = useTheme();
+    const c = '<img src={projectImage} alt="" className={styles.project_image} />'
     return(
         <div className={styles.project_container} >
-            <div className={styles.project_box} style={{backgroundColor: theme.palette.lightBlue, borderColor: theme.palette.darkBlue,}}>
-                <img src={projectImage} alt="" className={styles.project_image} />
+            <div className={styles.project_box}>
+                
                 <div className={styles.project_label}>{name}</div>
                 <div className={styles.project_row_count}>Rows: {counters[0]}</div>
             </div>

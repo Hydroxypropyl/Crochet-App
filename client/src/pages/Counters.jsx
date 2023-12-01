@@ -7,8 +7,8 @@ import Button from '@mui/material/Button';
 
 const Counters =() => {
   const [hideText, setHideText] = useState(true);
-  const queryParams = new URLSearchParams(location.search);
-  const id = queryParams.get('id');
+  //const queryParams = new URLSearchParams(location.search);
+  //const id = queryParams.get('id');
 
   const toggleTextVisibility = () => {
     setHideText(!hideText);

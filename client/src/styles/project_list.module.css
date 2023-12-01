@@ -16,14 +16,19 @@
 
 .project_box {
     align-content: center;
+    margin:10px;
+    border-color: black;
+    border-width: 2px;
+    padding:2px;
+    background-color: '#8FB3FF';
 }
 
 .project_label {
-
+    margin:2px;
     
 }
 .project_row_count {
-
+    margin:2px;
 }
 
 .project_image {
