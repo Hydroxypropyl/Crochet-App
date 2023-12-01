@@ -47,12 +47,8 @@ const ProjectList = ({ setAndPopMessage }) => {
                 </Grid>
             </Box>
             <div className={styles.button_bar}>
-                <Button onClick={() => navigate("/projects/new")} variant="contained" color="darkBlue">
-                    Create new project
-                </Button>
-                <Button onClick={() => navigate("/counters")} variant="contained" color="lightBlue">
-                    Start without a project
-                </Button>
+                <Button onClick={() => navigate('/projects/new')} variant="contained" color="darkBlue">Create new project</Button>
+                <Button onClick={() => navigate('/counters')} variant="contained" color="lightBlue">Start without a project</Button>
             </div>
         </Container>
     )

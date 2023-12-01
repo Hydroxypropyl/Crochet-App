@@ -21,6 +21,8 @@ export const register = async data => await axios.post('/api/login/signup', { da
 export const getAllProjects = async () => await axios.get(`/api/projects/`).then(response => response.data)
 export const createNewProject = async data => await axios.post('/api/projects/new', { data }).then(response => response.data)
 
+export const getCounterByProjectId = async id => await api.get(`/counters/${id}`).then(response => response.data)
+
 const apis = {
     getAllStitches,
     getStitchById,
@@ -28,6 +30,7 @@ const apis = {
     getAllProjects,
     register,
     createNewProject,
+    getCounterByProjectId,
 }
 
 export default apis
