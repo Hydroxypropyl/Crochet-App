@@ -1,6 +1,7 @@
 const Project = require('../models/project-model')
 const fs = require('fs')
 const path = require('path')
+const loginControl = require('../controllers/login-ctrl')
 const DEBUG = false; //Set to false when you want to retrieve stitches from database not mock data
 
 /*
@@ -105,32 +106,98 @@ getProjectById = async (req, res) => {
     //TODO
 }
 
-//Retrieve all the projects in the database
+//Retrieve the project that match the user token
 getProjects = async (req, res) => {
-    if (DEBUG) {
-        const project1 = new Project({
-            name: 'Project 1',
-            image: 'mockup.jpg',
-            id: '12345',
-            rowCount:'00',
-        });
-        const project2 = new Project({
-            name: 'Project 2',
-            image: 'mockup.jpg',
-            id: '54446194341',
-            rowCount: '01',
-        });
-        const projects = [project1, project2];
-        return res.status(200).json({ success: true, data: projects});
+    // Retrieve the authorization header from the request
+    const authorizationHeader = req.headers['authorization'];
+
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+        // No valid token
+        return res.status(202).json({
+            severity: "info",
+            success: false,
+            location: "/login",
+            message: "Please login before "
+        })
+
     }
 
-    const projects = await Project.find({});
-    return res.status(200).json(projects);
+    // Extract the token from the header
+    const token = authorizationHeader.substring('Bearer '.length);
+
+    const id = await loginControl.getUserIdByToken(token);
+
+    if (!id) {
+        // Token is invalid
+        return res.status(202).json({
+            success: false,
+            severity: "error",
+            message: 'Invalid token, please logout and login again!',
+            location: "/",
+        })
+    }
+    
+    const projects = await Project.find({user: id});
+
+    return res.status(202).json({
+        success: true,
+        severity: "success",
+        message: 'Retrieve the projects successfully!',
+        projects: projects,
+    })
 }
 
 
 createNewProject = async(req, res) => {
-    console.log("should add the project to database")
+    if (!req.body) {
+        return res.status(202).json({
+            success: false,
+            severity: "warning",
+            message: 'Empty submit',
+        })
+    }
+
+    // Extract the token from the header
+    const authorizationHeader = req.headers['authorization'];
+    const tokenNewProj = authorizationHeader.substring('Bearer '.length);
+
+    const id = await loginControl.getUserIdByToken(tokenNewProj);
+    if (!id) {
+        // Token is invalid
+        return res.status(202).json({
+            success: false,
+            severity: "error",
+            message: 'Invalid token, please logout and login again!',
+        })
+    }
+
+    const name = req.body.data.name
+    const image = req.body.data.selectedFile
+
+    const newProject = new Project({
+        name: name,
+        projectImage: image,
+        counters: [0],
+        user: id,
+    });
+
+    // Save the project to database and redirect to his page
+    try {
+        const savedProject = await newProject.save();
+        const projectId = savedProject._id.toString();
+        return res.status(202).json({
+            success: true,
+            severity: "success",
+            location: `/counters?id=${projectId}`,
+            message: "Project created!"
+        })
+        } catch (error) {
+        return res.status(500).json({
+            success: false,
+            severity: "error",
+            message: "Error when saving into database!"
+        });
+    }
 }
 module.exports = {
     getProjectById,
