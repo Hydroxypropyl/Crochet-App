@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../client && yarn run build && cp -r build ../server",
+    "deploy:full": "yarn run build:ui && git add . && git commit -m uibuild && git push"
   },
   "dependencies": {
     "body-parser": "1.20.2",
