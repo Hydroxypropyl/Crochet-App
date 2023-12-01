@@ -242,9 +242,10 @@ const App = () => {
             <TopBanner onToggleColorMode={toggleColorMode} colorMode={colorMode} setAndPopMessage={setAndPopMessage}/>
                 <Routes>
                     <Route path="/" element={<Home dayStitch={dayStitch} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
-                    <Route path="favorites" element={<Favorites />} />
+                    <Route path="favorites" element={<ProjectList setAndPopMessage={setAndPopMessage} />} />
+                    <Route path="counters/:id" element={<Counters setAndPopMessage={setAndPopMessage}/>} />
                     <Route path="counters" element={<Counters />} />
-                    <Route path="stitches" element={<StitchGlossary sortData={sortData} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
+                    <Route path="stitches" element={<StitchGlossary setAndPopMessage={setAndPopMessage} sortData={sortData} filteredStitches={filteredStitches} setSearchQuery={setSearchQuery} />} />
                     <Route path="login" element={<Login setAndPopMessage={setAndPopMessage} />} />
                     <Route path="signup" element={<Signup setAndPopMessage={setAndPopMessage} />} />
                     <Route path="/projects/new" element={<NewProjectForm setAndPopMessage={setAndPopMessage} />} />
