@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: react-app
-    runtime: docker
-    dockerfilePath: ./client/Dockerfile # optional
-  - type: worker
-    name: api-server
-    runtime: docker
-    dockerfilePath: ./server/Dockerfile # optional
