@@ -11,7 +11,7 @@ const ProjectList = ({ setAndPopMessage }) => {
     useEffect(() => {
         api.getAllProjects().then(res => {
             if (res.success) {
-                setProjects(res);
+                setProjects(res.projects);
             } else {
                 setAndPopMessage(res.message, res.severity);
                 navigate(res.location);

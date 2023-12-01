@@ -139,10 +139,13 @@ getProjects = async (req, res) => {
     
     const projects = await Project.find({user: id});
 
+    console.log(projects);
+
     return res.status(202).json({
         success: true,
         severity: "success",
         message: 'Retrieve the projects successfully!',
+        projects: projects,
     })
 }
 
@@ -157,6 +160,7 @@ createNewProject = async(req, res) => {
     }
 
     // Extract the token from the header
+    const authorizationHeader = req.headers['authorization'];
     const tokenNewProj = authorizationHeader.substring('Bearer '.length);
 
     const id = await loginControl.getUserIdByToken(tokenNewProj);

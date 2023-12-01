@@ -31,6 +31,7 @@ const apis = {
     login,
     getAllProjects,
     register,
+    createNewProject,
 }
 
 export default apis
