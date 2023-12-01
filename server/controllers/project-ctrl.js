@@ -188,7 +188,7 @@ createNewProject = async(req, res) => {
         return res.status(202).json({
             success: true,
             severity: "success",
-            location: `/projects/${projectId}`,
+            location: `/counters?id=${projectId}`,
             message: "Project created!"
         })
         } catch (error) {
