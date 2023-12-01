@@ -60,6 +60,7 @@ getCounter = async (req, res) => {
             severity: "success",
             message: 'Retrieve the counters successfully!',
             counters: project.counters,
+            name: project.name,
         })
     }
 }
@@ -94,7 +95,7 @@ updateCounter = async(req, res) => {
     const newProject = new Project({
         name: name,
         projectImage: image,
-        counters: [0],
+        counters: [0, 0],
         user: id,
     });
 

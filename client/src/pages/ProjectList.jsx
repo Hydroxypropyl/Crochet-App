@@ -32,8 +32,8 @@ const ProjectList = ({ setAndPopMessage }) => {
             )} 
             </div>
             <div>
-                <Button variant="contained" color="darkBlue">Create new project</Button>
-                <Button variant="contained" color="lightBlue">Start without a project</Button>
+                <Button onClick={() => navigate('/projects/new')} variant="contained" color="darkBlue">Create new project</Button>
+                <Button onClick={() => navigate('/counters')} variant="contained" color="lightBlue">Start without a project</Button>
             </div>
         </div>
     )
