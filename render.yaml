@@ -7,3 +7,8 @@ services:
     name: api-server
     runtime: docker
     dockerfilePath: ./server/Dockerfile # optional
+    key: MONGODB_URL
+    fromService:
+    type: pserv
+    name: MongoDB
+    property: connectionString
