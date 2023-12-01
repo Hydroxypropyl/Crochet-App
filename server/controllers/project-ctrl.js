@@ -139,8 +139,6 @@ getProjects = async (req, res) => {
     
     const projects = await Project.find({user: id});
 
-    console.log(projects);
-
     return res.status(202).json({
         success: true,
         severity: "success",
@@ -179,6 +177,7 @@ createNewProject = async(req, res) => {
     const newProject = new Project({
         name: name,
         projectImage: image,
+        counters: [0],
         user: id,
     });
 

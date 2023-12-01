@@ -24,7 +24,7 @@ const ProjectList = ({ setAndPopMessage }) => {
             <div className={styles.projectList_container}>
             {projects.length ? (
                 projects.map((project) => (
-                    <ProjectItem className={styles.projectItem} name={project.label} id={project.id} image={project.image} rowCount={project.rowCount}></ProjectItem>
+                    <ProjectItem className={styles.projectItem} name={project.name} id={project._id} image={project.projectImage} counters={project.counters}></ProjectItem>
 
                 ))
             ) : (
