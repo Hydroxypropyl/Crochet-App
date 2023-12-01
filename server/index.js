@@ -14,6 +14,7 @@ const PORT = process.env.PORT
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 app.use(bodyParser.json())
+app.use(express.static('build'))
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
