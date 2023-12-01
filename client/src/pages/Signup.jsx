@@ -44,7 +44,7 @@ export default function Signup({ setAndPopMessage }) {
         setAndPopMessage(response.message, "error");
       }
     } catch (error) {
-      setAndPopMessage(error, "success");
+      setAndPopMessage(error, "error");
     }
   };
 
