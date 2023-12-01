@@ -1,25 +1,29 @@
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
 import styles from "../styles/project_list.module.css";
-import {useTheme} from '@mui/material/styles';
+//import {useTheme} from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 
 
-
-const ProjectItem = ({name, image, rowCount, id}) => {
+const ProjectItem = ({name, projectImage, counters, id}) => {
+    const navigate = useNavigate();
     const deleteProject = (id) => {
-        //TODO
+        //TODO<IconButton variant="contained" onClick={() => deleteProject(id)}>
+           //     <DeleteOutlinedIcon />
+           // </IconButton>
     }
-    const theme = useTheme();
+
+    const handleProjectClick = () => {
+        navigate(`/counters/${id}`);  // Redirect to /counters/:id
+    }
+    //const c = '<img src={projectImage} alt="" className={styles.project_image} />'
     return(
         <div className={styles.project_container} >
-            <div className={styles.project_box} style={{backgroundColor: theme.palette.lightBlue, borderColor: theme.palette.darkBlue,}}>
-                <img src={image} alt="" className={styles.project_image} />
-                <div className={styles.project_label}>{name}</div>
-                <div className={styles.project_row_count}>Rows: {rowCount}</div>
+            <div className={styles.project_box} onClick={handleProjectClick}>
+                <p className={styles.project_label}>{name}</p>
+                <p className={styles.project_row_count}>Rows: {counters[0]}</p>
             </div>
-            <IconButton variant="contained" onClick={() => deleteProject(id)}>
-                <DeleteOutlinedIcon />
-            </IconButton>
+            
         </div>
     )
 }

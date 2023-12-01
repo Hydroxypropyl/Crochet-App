@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 
 const Counters =() => {
   const [hideText, setHideText] = useState(true);
+
   const toggleTextVisibility = () => {
     setHideText(!hideText);
   };

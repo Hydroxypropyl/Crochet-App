@@ -11,8 +11,7 @@ const Project = new Schema({
 
         counters: [
           {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Counter'
+            type: Number
           }
         ],
         user: {
@@ -25,7 +24,7 @@ const Project = new Schema({
 Project.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
-      returnedObject.image = Buffer.from(returnedObject.projectImage.data, 'binary').toString('base64')
+      returnedObject.image = returnedObject.projectImage ? Buffer.from(returnedObject.projectImage.data, 'binary').toString('base64') : null
       delete returnedObject._id
       delete returnedObject.__v
       delete returnedObject.projectImage
