@@ -1,11 +1,7 @@
 import axios from 'axios'
 
-const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
-})
-
 // Add an interceptor to include the authentication token in the headers
-api.interceptors.request.use((config) => {
+axios.interceptors.request.use((config) => {
     const authToken = localStorage.getItem('authToken');
 
     if (authToken) {
@@ -17,15 +13,15 @@ api.interceptors.request.use((config) => {
     return Promise.reject(error);
 });
 
-export const getAllStitches = async () => await api.get(`/stitches`).then(response => response.data)
-export const getStitchById = async id => await api.get(`/stitches/${id}`).then(response => response.data)
-export const login = async data => await api.post('/login/signin', { data }).then(response => response.data)
-export const register = async data => await api.post('/login/signup', { data }).then(response => response.data)
+export const getAllStitches = async () => await axios.get('/api/stitches').then(response => response.data)
+export const getStitchById = async id => await axios.get(`/api/stitches/${id}`).then(response => response.data)
+export const login = async data => await axios.post('/api/login/signin', { data }).then(response => response.data)
+export const register = async data => await axios.post('/api/login/signup', { data }).then(response => response.data)
 
-export const getAllProjects = async () => await api.get(`/projects/`).then(response => response.data)
-export const createNewProject = async data => await api.post('/projects/new', { data }).then(response => response.data)
+export const getAllProjects = async () => await axios.get(`/api/projects/`).then(response => response.data)
+export const createNewProject = async data => await axios.post('/api/projects/new', { data }).then(response => response.data)
 
-export const getCounterByProjectId = async id => await api.get(`/counters/${id}`).then(response => response.data)
+export const getCounterByProjectId = async id => await axios.get(`/api/counters/${id}`).then(response => response.data)
 
 const apis = {
     getAllStitches,
