@@ -7,6 +7,7 @@ const db = require('./db')
 const stitchRouter = require('./routes/stitch-router')
 const projectRouter = require('./routes/project-router')
 const loginRouter = require('./routes/login-router')
+const counterRouter = require('./routes/counter-router')
 
 const app = express()
 const PORT = process.env.PORT
@@ -24,5 +25,6 @@ app.get('/', (req, res) => {
 app.use('/api/stitches', stitchRouter)
 app.use('/api/projects', projectRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/counters', counterRouter)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

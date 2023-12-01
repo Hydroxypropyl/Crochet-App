@@ -171,7 +171,7 @@ const theme = createTheme(getDesignTokens(colorMode));
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="favorites" element={<Favorites />} />
-                    <Route path="counters" element={<Counters />} />
+                    <Route path="counters/:id" element={<Counters />} />
                     <Route path="stitches" element={<StitchGlossary />} />
                     <Route path="login" element={<Login setAndPopMessage={setAndPopMessage} />} />
                     <Route path="signup" element={<Signup setAndPopMessage={setAndPopMessage} />} />
